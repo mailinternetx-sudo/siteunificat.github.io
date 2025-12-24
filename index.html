@@ -154,72 +154,43 @@
         padding-right: 100%;
     }
 
-    /* PREMIUM Web-Stat widget */
-#webstat-premium {
-    position: fixed;
-    left: 12px;
-    bottom: 12px;
-    z-index: 9999;
+    /<!-- Web-Stat premium widget -->
+<div id="webstat-premium">
+    <div class="ws-header">
+        <img src="https://cdn-icons-png.flaticon.com/512/2721/2721297.png" alt="icon">
+        <span>Web-Stat</span>
+    </div>
 
-    background: linear-gradient(135deg, rgba(20,20,30,0.9), rgba(40,40,60,0.9));
-    backdrop-filter: blur(6px);
+    <div class="ws-item">
+        <img src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png" alt="online">
+        <div>
+            <small>Online</small>
+        </div>
+    </div>
 
-    color: #e0fefe;
-    padding: 12px;
-    border-radius: 14px;
-    width: 170px;
+    <div class="ws-item">
+        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828640.png" alt="total">
+        <div>
+            <small>Total</small>
+        </div>
+    </div>
 
-    font-family: Arial, sans-serif;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-}
+    <!-- Сюда Web-Stat подставляет цифры -->
+    <span id="wts2205846"></span>
+</div>
 
-/* Header */
-.ws-header {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 14px;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
+<script>
+var wts=document.createElement('script');
+wts.async=true;
+wts.src='https://app.ardalio.com/wts7.js';
+document.head.appendChild(wts);
+wts.onload=function(){ wtsl7(2205846,5); };
+</script>
 
-.ws-header img {
-    width: 22px;
-    height: 22px;
-}
+<noscript>
+<img src="https://app.ardalio.com/7/5/2205846.png" alt="Web-Stat">
+</noscript>
 
-/* Items */
-.ws-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 6px;
-}
-
-.ws-item img {
-    width: 18px;
-    height: 18px;
-}
-
-.ws-item small {
-    font-size: 11px;
-    color: #9ffcff;
-}
-
-/* Numbers from Web-Stat */
-#wts2205846 {
-    display: block;
-    margin-top: 6px;
-    font-size: 14px;
-    font-weight: bold;
-    color: #00ffcc;
-}
-
-/* Hover effect */
-#webstat-premium:hover {
-    transform: scale(1.04);
-    transition: 0.3s ease;
-}
 
     /* =============================================== */
 </style>
@@ -299,42 +270,105 @@
     <p>Site creat pentru acces rapid la resurse utile.</p>
 </footer>
 
-<!-- Web-Stat premium mini widget -->
-<div id="webstat-premium">
-    <div class="ws-header">
-        <img src="https://cdn-icons-png.flaticon.com/512/2721/2721297.png">
-        <span>Web-Stat</span>
-    </div>
+/* PREMIUM Web-Stat widget */
+#webstat-premium {
+    position: fixed;
+    left: 12px;
+    bottom: 12px;
+    z-index: 9999;
 
-    <div class="ws-item">
-        <img src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png">
-        <div>
-            <small>Online</small>
-        </div>
-    </div>
+    background: rgba(20, 20, 30, 0.5);
+    backdrop-filter: blur(8px);
 
-    <div class="ws-item">
-        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828640.png">
-        <div>
-            <small>Total</small>
-        </div>
-    </div>
+    color: #00ffcc;
+    padding: 10px 12px;
+    border-radius: 12px;
+    width: 160px;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 6px 18px rgba(0,255,204,0.4);
 
-    <!-- сюда Web-Stat подставляет цифры -->
-    <span id="wts2205846"></span>
-</div>
+    transition: transform 0.3s ease, background 0.3s ease;
+}
 
-<script>
-var wts=document.createElement('script');
-wts.async=true;
-wts.src='https://app.ardalio.com/wts7.js';
-document.head.appendChild(wts);
-wts.onload=function(){ wtsl7(2205846,5); };
-</script>
+/* Header */
+.ws-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #ffffff;
+}
 
-<noscript>
-<img src="https://app.ardalio.com/7/5/2205846.png" alt="Web-Stat">
-</noscript>
+.ws-header img {
+    width: 20px;
+    height: 20px;
+}
+
+/* Items */
+.ws-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+}
+
+.ws-item img {
+    width: 16px;
+    height: 16px;
+}
+
+.ws-item small {
+    font-size: 11px;
+    color: #9ffcff;
+}
+
+/* Numbers from Web-Stat */
+#wts2205846 {
+    display: block;
+    margin-top: 4px;
+    font-size: 13px;
+    font-weight: bold;
+    color: #00ffcc;
+}
+
+/* Пульс при росте онлайн */
+@keyframes pulse {
+    0% { transform: scale(1); box-shadow: 0 0 10px rgba(0,255,204,0.4); }
+    50% { transform: scale(1.08); box-shadow: 0 0 18px rgba(0,255,204,0.8); }
+    100% { transform: scale(1); box-shadow: 0 0 10px rgba(0,255,204,0.4); }
+}
+
+/* Анимация включается через JS, см. ниже */
+
+/* Hover effect */
+#webstat-premium:hover {
+    transform: scale(1.05);
+}
+
+/* Dark / Light mode авто */
+@media (prefers-color-scheme: dark) {
+    #webstat-premium { background: rgba(30,30,45,0.5); color: #00ffcc; }
+    .ws-item small { color: #9ffcff; }
+}
+@media (prefers-color-scheme: light) {
+    #webstat-premium { background: rgba(255,255,255,0.6); color: #006666; }
+    .ws-item small { color: #006666; }
+}
+
+/* Мобильная мини-версия */
+@media (max-width: 600px) {
+    #webstat-premium {
+        width: 120px;
+        padding: 6px 8px;
+        font-size: 10px;
+    }
+    .ws-header img, .ws-item img { width: 14px; height: 14px; }
+    .ws-item small { font-size: 9px; }
+    #wts2205846 { font-size: 11px; }
+}
+
 
 <script>
     // Загрузка номера телефона
@@ -375,4 +409,5 @@ wts.onload=function(){ wtsl7(2205846,5); };
 
 </body>
 </html>
+
 
