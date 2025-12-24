@@ -13,24 +13,20 @@
         color: #333;
         text-align: center;
         min-height: 100vh;
-        position: relative; /* Для правильного позиционирования абсолютной строки */
+        position: relative;
     }
-
     header {
-        margin-top: 110px; /* Отступ под бегущую строку */
+        margin-top: 110px;
         margin-bottom: 50px;
     }
-
     .logo {
         width: 300px;
         margin-bottom: 20px;
     }
-
     h1 {
         font-size: 2.5em;
         color: #003d82;
     }
-
     .links-container {
         max-width: 1400px;
         margin: 0 auto;
@@ -39,7 +35,6 @@
         gap: 25px;
         padding: 20px;
     }
-
     .menu-button {
         display: flex;
         align-items: center;
@@ -61,43 +56,36 @@
         opacity: 0;
         transform: scale(0.8) translateY(30px);
     }
-
     .menu-button.big {
         padding: 28px;
         font-size: 1.5em;
         min-height: 120px;
         box-shadow: 0 15px 20px rgba(75, 0, 130, 0.5);
     }
-
     .menu-button:hover {
         background-size: 800% 800%;
         transform: translateY(-10px) scale(1.07);
         box-shadow: 0 18px 25px rgba(75, 0, 130, 0.6);
     }
-
     .menu-button img {
         width: 45px;
         height: 45px;
         filter: brightness(0) invert(1);
     }
-
     @keyframes gradientShift {
         0% { background-position: 0% 50%; }
         50% { background-position: 100% 50%; }
         100% { background-position: 0% 50%; }
     }
-
     @keyframes popUp {
         0% { opacity: 0; transform: scale(0.8) translateY(30px); }
         60% { opacity: 1; transform: scale(1.05) translateY(-5px); }
         100% { opacity: 1; transform: scale(1) translateY(0); }
     }
-
     @keyframes floatUpDown {
         0%, 100% { transform: translateY(0); }
         50% { transform: translateY(-8px); }
     }
-
     .menu-button:nth-child(1) { animation-delay: 0.1s; }
     .menu-button:nth-child(2) { animation-delay: 0.3s; }
     .menu-button:nth-child(3) { animation-delay: 0.5s; }
@@ -110,48 +98,40 @@
     .menu-button:nth-child(10) { animation-delay: 1.9s; }
     .menu-button:nth-child(11) { animation-delay: 2.1s; }
     .menu-button:nth-child(12) { animation-delay: 2.3s; }
-
     @media (max-width: 1200px) {
         .links-container { grid-template-columns: repeat(2, 1fr); }
     }
-
     @media (max-width: 600px) {
         .links-container { grid-template-columns: 1fr; }
         header { margin-top: 130px; }
     }
-
     .contact {
         margin-top: 60px;
         font-size: 1.3em;
     }
-
     .contact a {
         color: #003d82;
         text-decoration: none;
         font-weight: bold;
     }
-
     footer {
         margin-top: 100px;
         font-size: 0.9em;
         color: #666;
         padding-bottom: 20px;
     }
-
-    /* ==================== БЕГУЩАЯ СТРОКА (прокручивается с страницей) ==================== */
     .ticker-container {
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 90px;
-        background-color: transparent; /* Полностью прозрачный фон */
+        background-color: transparent;
         overflow: hidden;
         z-index: 10;
         white-space: nowrap;
         box-sizing: border-box;
     }
-
     .ticker {
         display: inline-block;
         padding-left: 100%;
@@ -160,28 +140,64 @@
         color: red;
         font-weight: bold;
         line-height: 90px;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Лёгкая тень для лучшей читаемости на светлом фоне */
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     }
-
     @keyframes ticker {
         0% { transform: translate3d(0, 0, 0); }
         100% { transform: translate3d(-100%, 0, 0); }
     }
-
     .ticker:hover {
         animation-play-state: paused;
     }
-
     .ticker-content {
         display: inline-block;
         padding-right: 100%;
     }
-    /* ================================================================================= */
+
+    /* === Новый стиль для счётчика посетителей слева === */
+    #visitor-counter-panel {
+        position: fixed;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(0, 51, 102, 0.85); /* Тёмно-синий полупрозрачный, в тон сайта */
+        color: white;
+        padding: 15px 12px;
+        border-radius: 15px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        text-align: center;
+        line-height: 1.6;
+        z-index: 20;
+        min-width: 120px;
+        backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    #visitor-counter-panel strong {
+        font-size: 20px;
+        display: block;
+    }
+    #visitor-counter-panel .icon {
+        font-size: 28px;
+        margin-bottom: 8px;
+    }
+    @media (max-width: 768px) {
+        #visitor-counter-panel {
+            left: 5px;
+            padding: 10px;
+            font-size: 14px;
+        }
+        #visitor-counter-panel strong {
+            font-size: 18px;
+        }
+    }
+    /* =============================================== */
 </style>
 </head>
 <body>
 
-<!-- Бегущая строка — теперь в потоке страницы, прокручивается вместе с ней -->
+<!-- Бегущая строка -->
 <div class="ticker-container">
     <div class="ticker">
         <span class="ticker-content" id="ticker-text">Încărcare anunț...</span>
@@ -194,6 +210,7 @@
 </header>
 
 <div class="links-container">
+    <!-- Ваши кнопки остаются без изменений -->
     <a href="https://ceib.mf.gov.md" target="_blank" class="menu-button big">
         <img src="https://github.com/mailinternetx-sudo/imagine/blob/main/ceib.png?raw=true" alt="icon" />
         CEIB
@@ -210,7 +227,6 @@
         <img src="https://github.com/mailinternetx-sudo/imagine/blob/main/mtender1.png?raw=true" alt="icon" />
         MTENDER.MD
     </a>
-
     <a href="https://www.legis.md/" target="_blank" class="menu-button big">
         <img src="https://github.com/mailinternetx-sudo/imagine/blob/main/legis.png?raw=true" alt="icon" />
         LEGIS
@@ -223,7 +239,6 @@
         <img src="https://github.com/mailinternetx-sudo/imagine/blob/main/aap12.png?raw=true" alt="icon" />
         Agenția Achiziții Publice
     </a>
-
     <a href="https://drive.google.com/drive/folders/1RGOCNVfbkBZWEoxZucHnuvG1IbK0d6EW?usp=sharing" target="_blank" class="menu-button">
         <img src="https://github.com/mailinternetx-sudo/imagine/blob/main/alte4.png?raw=true" alt="icon" />
         ALTELE
@@ -255,6 +270,13 @@
     <p>Site creat pentru acces rapid la resurse utile.</p>
 </footer>
 
+<!-- Панель счётчика посетителей слева -->
+<div id="visitor-counter-panel">
+    <div class="icon">👥</div>
+    Online: <strong id="wts_p_online_2205846">0</strong><br>
+    Total: <strong id="wts_p_visits_2205846">0</strong>
+</div>
+
 <script>
     // Загрузка номера телефона
     const phoneUrl = 'https://raw.githubusercontent.com/mailinternetx-sudo/suport/refs/heads/main/suport.txt';
@@ -265,141 +287,32 @@
 
     // Бегущая строка
     const tickerUrl = 'https://raw.githubusercontent.com/mailinternetx-sudo/my-text-file/refs/heads/main/anunt.txt';
-
     function loadTicker() {
         fetch(tickerUrl)
             .then(response => { if (!response.ok) throw new Error('Eroare'); return response.text(); })
             .then(text => {
-                const cleanText = text.trim().replace(/\n/g, '   •   ');
-                document.getElementById('ticker-text').textContent = cleanText + '          ';
+                const cleanText = text.trim().replace(/\n/g, ' • ');
+                document.getElementById('ticker-text').textContent = cleanText + ' ';
             })
             .catch(() => {
                 document.getElementById('ticker-text').textContent = 'Eroare la încărcarea anunțului';
             });
     }
-
     loadTicker();
     setInterval(loadTicker, 600000); // Каждые 10 минут
 </script>
-</body>
-</html>
-</html>
-<!DOCTYPE html>
-<html lang="ro">
-<head>
-<meta charset="UTF-8">
-<title>Afișaj Data, Oră, Internet</title>
 
-<style>
-#info-box {
-    position: fixed;
-    top: 10px;
-    right: 10px;
-    background: rgba(0, 0, 0, 0.75);
-    color: #00ffcc;
-    font-family: Arial, sans-serif;
-    font-size: 22px;
-    font-weight: bold;
-    padding: 15px 20px;
-    border-radius: 10px;
-    text-align: right;
-    z-index: 9999;
-}
-</style>
-</head>
-<!DOCTYPE html>
-<html lang="ro">
-<head>
-<meta charset="UTF-8">
-<title>Afișaj Data, Oră, Internet</title>
-
-<style>
-#info-box {
-    position: fixed;
-    top: 10px;
-    right: 10px;
-    background: rgba(0, 0, 0, 0.75);
-    color: #00ffcc;
-    font-family: Arial, sans-serif;
-    font-size: 22px;
-    font-weight: bold;
-    padding: 15px 20px;
-    border-radius: 10px;
-    text-align: right;
-    z-index: 9999;
-}
-</style>
-</head>
-
-<body>
-
-<div id="info-box">
-    <div id="date"></div>
-    <div id="time"></div>
-    <div id="speed">Internet: testare...</div>
-</div>
-
+<!-- Код счётчика Web-Stat (v 7.0) — интегрирован в основной код страницы -->
+<span id="wts2205846"></span>
 <script>
-// DATA ȘI ORA (Republica Moldova)
-function updateDateTime() {
-    const now = new Date();
-
-    const date = now.toLocaleDateString('ro-RO', {
-        timeZone: 'Europe/Chisinau',
-        day: '2-digit',
-        month: '2-digit',
-        year: 'numeric'
-    });
-
-    const time = now.toLocaleTimeString('ro-RO', {
-        timeZone: 'Europe/Chisinau',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit'
-    });
-
-    document.getElementById('date').textContent = `Data: ${date}`;
-    document.getElementById('time').textContent = `Ora: ${time}`;
-}
-
-setInterval(updateDateTime, 1000);
-updateDateTime();
-
-// TEST VITEZĂ INTERNET (estimativ)
-async function testInternetSpeed() {
-    const imageUrl = "https://upload.wikimedia.org/wikipedia/commons/3/3f/Fronalpstock_big.jpg";
-    const startTime = performance.now();
-
-    const img = new Image();
-    img.src = imageUrl + "?n=" + Math.random();
-
-    img.onload = function () {
-        const endTime = performance.now();
-        const duration = (endTime - startTime) / 1000;
-        const sizeBytes = 5500000; // aprox 5.5MB
-        const speedMbps = ((sizeBytes * 8) / duration / 1024 / 1024).toFixed(2);
-
-        document.getElementById("speed").textContent =
-            `Internet: ${speedMbps} Mbps`;
-    };
-
-    img.onerror = function () {
-        document.getElementById("speed").textContent =
-            "Internet: indisponibil";
-    };
-}
-
-// Test la pornire și la fiecare 60 sec
-testInternetSpeed();
-setInterval(testInternetSpeed, 60000);
+    var wts = document.createElement('script');
+    wts.async = true;
+    wts.src = 'https://app.ardalio.com/wts7.js';
+    document.head.appendChild(wts);
+    wts.onload = function() { wtsl7(2205846, 5); };
 </script>
-<!-- begin code v 7.0 --> 
-<span id="wts2205846"></span> 
-<script>var wts=document.createElement('script');wts.async=true;
- wts.src='https://app.ardalio.com/wts7.js';
- document.head.appendChild(wts); wts.onload = function(){ wtsl7(2205846,5); }; </script><noscript><img src="https://app.ardalio.com/7/5/2205846.png"></noscript> <!-- end code v 7.0 -->
+<noscript><img src="https://app.ardalio.com/7/5/2205846.png"></noscript>
+<!-- Конец кода счётчика -->
+
 </body>
 </html>
-
-
-
