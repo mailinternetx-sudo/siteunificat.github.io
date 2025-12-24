@@ -287,23 +287,6 @@
 <!DOCTYPE html>
 <html lang="ro">
 <head>
- <style>
-     /* Web-Stat слева */
-#webstat-counter,
-#wts2205846 {
-    position: fixed;
-    left: 10px;
-    bottom: 20px;
-    z-index: 9999;
-    background: rgba(0, 0, 0, 0.75);
-    color: #00ffcc;
-    padding: 12px 16px;
-    border-radius: 10px;
-    font-size: 16px;
-    font-weight: bold;
-    box-shadow: 0 0 15px rgba(0, 255, 204, 0.6);
-}
-</style>
 <meta charset="UTF-8">
 <title>Afișaj Data, Oră, Internet</title>
 
@@ -410,24 +393,13 @@ async function testInternetSpeed() {
 testInternetSpeed();
 setInterval(testInternetSpeed, 60000);
 </script>
-
-
-    <!-- Web-Stat counter -->
-<div id="webstat-counter"></div>
-
-<script>
-var wts=document.createElement('script');
-wts.async=true;
-wts.src='https://app.ardalio.com/wts7.js';
-document.head.appendChild(wts);
-wts.onload = function(){ wtsl7(2205846,5); };
-</script>
-
-<noscript>
-<img src="https://app.ardalio.com/7/5/2205846.png" alt="Web-Stat">
-</noscript>
-<!-- /Web-Stat counter -->
-
+<!-- begin code v 7.0 --> 
+<span id="wts2205846"></span> 
+<script>var wts=document.createElement('script');wts.async=true;
+ wts.src='https://app.ardalio.com/wts7.js';
+ document.head.appendChild(wts); wts.onload = function(){ wtsl7(2205846,5); }; </script><noscript><img src="https://app.ardalio.com/7/5/2205846.png"></noscript> <!-- end code v 7.0 -->
 </body>
 </html>
+
+
 
