@@ -329,9 +329,10 @@
     setInterval(testInternetSpeed, 60000);
 </script>
 
+
     
     
-   <!-- Начальный код версии 7.0 с отображением слева -->
+  <!-- Начальный код версии 7.0 -->
 <span id="wts2205835"></span>
 <script>
     var wts = document.createElement('script');
@@ -343,35 +344,58 @@
     };
 </script>
 <noscript><img src="https://app.ardalio.com/7/5/2205835.png"></noscript>
+<!-- Конечный код версии 7.0 -->
 
-<!-- CSS для перемещения счётчика Ardalio в левую сторону -->
+<!-- АГРЕССИВНЫЕ CSS-селекторы для перемещения счётчика Ardalio НА ЛЕВУЮ СТОРОНУ -->
 <style>
-    /* Основной контейнер счётчика Ardalio (обычно имеет id или класс от скрипта) */
-    #wts2205835 ~ div, 
-    div[id^="wts_"], 
+    /* Перехватываем все возможные контейнеры Ardalio */
+    #wts2205835,
+    #wts2205835 ~ div,
+    div[id^="wts"],
+    div[class*="wts"],
+    iframe[src*="ardalio.com"],
+    iframe[src*="app.ardalio.com"],
     .wts-counter,
-    iframe[src*="ardalio.com"] {
+    .wts-widget,
+    .wts-online,
+    .ardalio-widget,
+    div[data-wts],
+    [id*="wts"],
+    [class*="wts"],
+    [src*="ardalio.com"] {
         position: fixed !important;
-        left: 10px !important;        /* Отступ слева */
-        right: auto !important;       /* Отменяем правый позиционирование */
-        bottom: 10px !important;      /* Отступ снизу */
+        left: 15px !important;          /* Отступ слева */
+        bottom: 15px !important;        /* Отступ снизу */
         top: auto !important;
-        z-index: 9999 !important;
+        right: auto !important;
         transform: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        z-index: 99999 !important;      /* На передний план */
+        max-width: none !important;
     }
 
-    /* Дополнительно: если появляется панель или виджет */
-    .wts-widget, 
-    div.wts-online-counter {
-        left: 10px !important;
+    /* Дополнительно: если виджет в iframe — пытаемся повлиять на содержимое */
+    iframe[src*="ardalio.com"] body,
+    iframe[src*="ardalio.com"] div {
+        text-align: left !important;
+        direction: ltr !important;
+    }
+
+    /* Принудительно убираем любые правые/центральные стили */
+    [style*="right"],
+    [style*="float: right"],
+    [style*="text-align: right"] {
         right: auto !important;
-        bottom: 10px !important;
+        left: 15px !important;
+        float: left !important;
+        text-align: left !important;
     }
 </style>
-<!-- Конечный код версии 7.0 -->
 
 </body>
 </html>
+
 
 
 
