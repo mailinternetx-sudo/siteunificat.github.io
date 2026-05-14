@@ -1079,11 +1079,11 @@
 
 <script>
     // ==================== CONFIGURAȚIE ====================
-    // Trimitem totul prin Paznic (Cloudflare Worker)
-    const SCRIPT_URL = 'https://1.mail-internetx.workers.dev/';
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwcbsr4aJVlRpueO-F0DLDdFaRPd8rDXQu_5Sd5wyHNA6fzkCs7b-IHY0Kvdczv2zq7_w/exec';
     
     // ==================== VARIABILE GLOBALE CHAT ====================
     let userData = null;
+    let userIp = null;
     let displayedMessages = new Set();
     let lastMessageTimestamp = null;
 
@@ -1111,15 +1111,18 @@
     chatCloseBtn.addEventListener('click', () => chatContainer.classList.remove('open'));
 
     async function makeRequest(params) {
-        // Folosim metoda POST cu JSON (CORS prietenos)
+        const url = new URL(SCRIPT_URL);
+        Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
         try {
-            const response = await fetch(SCRIPT_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(params)
-            });
-            return await response.json();
+            const response = await fetch(url.toString());
+            const text = await response.text();
+            try { return JSON.parse(text); } catch(e) { return { status: 'error', message: 'Răspuns invalid' }; }
         } catch (error) { throw error; }
+    }
+
+    async function getUserIp() {
+        try { const r = await fetch('https://api.ipify.org?format=json'); const d = await r.json(); return d.ip; } 
+        catch { return 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2,5); }
     }
 
     function generateMessageId(m) { return `${m.timestamp}_${m.mesaj}_${m.isUser ? 'user' : 'consultant'}`; }
@@ -1179,13 +1182,12 @@
         const nume = numeInput.value.trim();
         const institutie = institutieInput.value.trim();
         if (!nume || !institutie) { alert('Completează toate câmpurile!'); return; }
-        
-        userData = { nume, institutie }; // IP-ul este detectat automat de worker
+        userIp = await getUserIp();
+        userData = { nume, institutie, ip: userIp };
         loginSection.classList.add('hidden');
         chatMain.classList.remove('hidden');
         await loadMessages();
-        // Mărit la 7 secunde pentru a evita blocarea de către Google/Cloudflare
-        setInterval(loadMessages, 7000);
+        setInterval(loadMessages, 3000);
         setTimeout(() => addMessageToChat({ mesaj:'Bun venit! Un consultant vă va răspunde în curând.', timestamp: new Date().toISOString(), isUser:false }), 1000);
     }
 
@@ -1198,19 +1200,22 @@
         const originalText = messageInput.value;
         messageInput.value = '';
 
+        const localTimestamp = new Date().toISOString();
+
         try {
             const result = await makeRequest({
                 action:'newMessage',
                 nume:userData.nume,
                 institutie:userData.institutie,
-                mesaj: mesaj,
-                imagine: mesaj.includes('![') ? mesaj : ''
+                mesaj,
+                imagine: mesaj.includes('![') ? mesaj : '',
+                ip:userData.ip
             });
 
             if (result.status === 'success') {
                 addMessageToChat({
                     mesaj,
-                    timestamp: result.data?.timestamp || new Date().toISOString(),
+                    timestamp: result.data?.timestamp || localTimestamp,
                     isUser:true
                 });
             } else throw new Error(result.message);
@@ -1229,14 +1234,15 @@
     }
 
     async function loadMessages() {
-        if (!userData) return;
+        if (!userData || !userIp) return;
         try {
-            // Worker-ul știe IP-ul clientului, așa că nu mai trimitem explicit ip
-            const result = await makeRequest({ action:'fetchMessages' });
+            const params = { action:'fetchMessages', userIp };
+            if (lastMessageTimestamp) params.lastTimestamp = lastMessageTimestamp;
+            const result = await makeRequest(params);
             if (result.status === 'success' && result.data?.messages) {
                 result.data.messages.forEach(msg => {
-                    if (msg.mesaj) addMessageToChat({ mesaj:msg.mesaj, timestamp:msg.timestamp, isUser:true });
-                    if (msg.raspuns?.trim()) addMessageToChat({ mesaj:msg.raspuns, timestamp:msg.timestamp, isUser:false });
+                    if (msg.ip === userIp && msg.mesaj) addMessageToChat({ mesaj:msg.mesaj, timestamp:msg.timestamp, isUser:true });
+                    if (msg.ip === userIp && msg.raspuns?.trim()) addMessageToChat({ mesaj:msg.raspuns, timestamp:msg.timestamp, isUser:false });
                 });
             }
         } catch (e) { console.error('Eroare preluare mesaje', e); }
@@ -1273,7 +1279,7 @@
         formData.append('image', file);
         formData.append('nume', userData.nume);
         formData.append('institutie', userData.institutie);
-        // ip-ul nu mai este trimis – worker-ul îl va adăuga automat
+        formData.append('ip', userIp);
         
         try {
             const controller = new AbortController();
