@@ -869,7 +869,7 @@
     .chat-toggle:hover { transform:scale(1.1); box-shadow:0 12px 40px rgba(102,126,234,0.6); }
     .chat-toggle svg { width:30px; height:30px; fill:white; transition:transform 0.3s ease; }
     .chat-toggle:hover svg { transform:scale(1.1); }
-    .chat-badge { position:absolute; top:-5px; right:-5px; width:24px; height:24px; background:var(--danger); border-radius:50%; font-size:12px; font-weight:700; color:white; display:flex; align-items:center; justify-content:center; display:none; }
+    .chat-badge { position:absolute; top:-5px; right:-5px; width:24px; height:24px; background:var(--danger); border-radius:50%; font-size:12px; font-weight:700; color:white; display:flex; align-items:center; justify-content:center; }
     .chat-badge.visible { display:flex; animation:bounce 0.5s ease; }
     @keyframes bounce { 0%,100%{transform:scale(1);} 50%{transform:scale(1.3);} }
     
@@ -998,401 +998,273 @@
         <img src="https://github.com/mailinternetx-sudo/imagine/blob/main/training.svg?raw=true" alt="icon" />
         Instructiuni
     </a>
-    <a href="https://drive.google.com/drive/folders/1nbpwaptvHrL6n4ke2whVXJvYuULvdBZv?usp=sharing" target="_blank" class="menu-button">
-        <img src="https://github.com/mailinternetx-sudo/imagine/blob/main/soft.png?raw=true" alt="icon" />
-        Programe utile
-    </a>
-    <a href="https://www.radio.md/" target="_blank" class="menu-button">
-        <img src="https://cdn1.iconfinder.com/data/icons/electronic-devices-glyph/614/872_-_Radio-1024.png" alt="icon" />
-        Radio On-line
-    </a>
 </div>
 
 <div class="contact">
-    <p id="phone-contact">Telefon: încărcare...</p>
-    <p><a href="https://docs.google.com/forms/d/e/1FAIpQLSfgFNOL8Yfi5knrQ1k82dbV7tGgqp9zDukmRVLgVe6zWvievQ/viewform?usp=sharing&ouid=112787161566953645990" target="_blank">Suport</a></p>
+    Contacte: <a href="mailto:support@example.com">support@example.com</a>
 </div>
 
 <footer>
-    <p>Site creat pentru acces rapid la resurse utile.</p>
+    © 2025 Site Unificat. Toate drepturile rezervate.
 </footer>
-
-<!-- Butoane în colțul stânga jos (cu text) -->
-<div class="bottom-left-buttons">
-    <a href="https://chatgpt.com/" target="_blank" class="bottom-button chatgpt-button">
-        <svg viewBox="0 0 24 24">
-            <path d="M22 12c0 5.52-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2s10 4.48 10 10zm-8.5-6L9 12h3v6l4.5-6h-3V6z"/>
-        </svg>
-        ChatGPT
-    </a>
-    <a href="https://gmail.com/" target="_blank" class="bottom-button gmail-button">
-        <svg viewBox="0 0 24 24">
-            <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-        </svg>
-        Gmail.com
-    </a>
-    <a href="https://yahoo.com/" target="_blank" class="bottom-button yahoo-button">
-        <span style="font-size: 1.5rem; font-weight: bold; margin-right: 4px;">Y!</span>
-        Yahoo.com
-    </a>
-    <a href="https://mail-apl.gov.md/" target="_blank" class="bottom-button aplmail-button">
-        <svg viewBox="0 0 24 24" width="28" height="28" fill="white">
-            <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-        </svg>
-        APL Mail
-    </a>
-</div>
-
-<!-- Chat Toggle Button -->
-<button class="chat-toggle" id="chatToggle" aria-label="Deschide chat">
-    <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg>
-    <span class="chat-badge" id="chatBadge">0</span>
-</button>
 
 <!-- Chat Container -->
 <div class="chat-container" id="chatContainer">
     <div class="chat-header">
-        <h2>💬 Asistență Live</h2>
-        <p>Chat în timp real cu consultantul</p>
         <button class="chat-close-btn" id="chatCloseBtn">✕</button>
+        <h2>Consultant</h2>
+        <p>Disponibil 24/7</p>
     </div>
-    <div id="loginSection" class="login-section">
-        <input type="text" id="nume" placeholder="Numele tău *" required>
-        <input type="text" id="institutie" placeholder="Instituția *" required>
-        <button onclick="login()">Intră în chat</button>
+    <div class="login-section" id="loginSection">
+        <input type="text" id="numeInput" placeholder="Introduceți numele..." />
+        <input type="text" id="institutieInput" placeholder="Introduceți instituția..." />
+        <button id="loginBtn">Intră în chat</button>
     </div>
-    <div id="chatMain" class="hidden" style="display: flex; flex-direction: column; height: 100%;">
-        <div id="messagesArea" class="messages-area">
-            <div class="loading">📩 Așteptăm mesaje...</div>
-        </div>
-        <div class="input-area">
-            <textarea id="messageInput" placeholder="Scrie un mesaj..." rows="1"></textarea>
-            <div class="input-actions">
-                <button onclick="uploadImage()">📷</button>
-                <button onclick="sendMessage()">➤</button>
-            </div>
+    <div class="messages-area hidden" id="messagesArea"></div>
+    <div class="input-area hidden" id="inputArea">
+        <textarea id="messageInput" placeholder="Introduceți mesajul..."></textarea>
+        <div class="input-actions">
+            <button id="sendBtn">➤</button>
         </div>
     </div>
 </div>
 
-<input type="file" id="imageUpload" accept="image/*" style="display: none;">
+<button class="chat-toggle" id="chatToggle">
+    <span class="chat-badge" id="chatBadge">1</span>
+    <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
+</button>
 
 <script>
-    // ==================== CONFIGURAȚIE ====================
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwcbsr4aJVlRpueO-F0DLDdFaRPd8rDXQu_5Sd5wyHNA6fzkCs7b-IHY0Kvdczv2zq7_w/exec';
+// ==================== CONFIGURAȚIE ====================
+const SCRIPT_URL = 'https://1.mail-internetx.workers.dev/';
+
+let userData = null;
+let displayedMessages = new Set();
+let lastMessageTimestamp = null;
+
+// DOM ELEMENTS
+const chatContainer = document.getElementById('chatContainer');
+const chatToggle = document.getElementById('chatToggle');
+const chatCloseBtn = document.getElementById('chatCloseBtn');
+const loginSection = document.getElementById('loginSection');
+const messagesArea = document.getElementById('messagesArea');
+const inputArea = document.getElementById('inputArea');
+const numeInput = document.getElementById('numeInput');
+const institutieInput = document.getElementById('institutieInput');
+const loginBtn = document.getElementById('loginBtn');
+const messageInput = document.getElementById('messageInput');
+const sendBtn = document.getElementById('sendBtn');
+const chatBadge = document.getElementById('chatBadge');
+
+// FUNCȚIE REQUEST THROUGH WORKER
+async function makeRequest(params) {
+    try {
+        const response = await fetch(SCRIPT_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(params)
+        });
+        return await response.json();
+    } catch (error) { 
+        console.error('Request error:', error);
+        throw error; 
+    }
+}
+
+// LOGIN FUNCTION
+async function login() {
+    const nume = numeInput.value.trim();
+    const institutie = institutieInput.value.trim();
+    if (!nume || !institutie) { 
+        alert('Completează toate câmpurile!'); 
+        return; 
+    }
     
-    // ==================== VARIABILE GLOBALE CHAT ====================
-    let userData = null;
-    let userIp = null;
-    let displayedMessages = new Set();
-    let lastMessageTimestamp = null;
+    userData = { nume, institutie };
+    loginSection.classList.add('hidden');
+    messagesArea.classList.remove('hidden');
+    inputArea.classList.remove('hidden');
+    await loadMessages();
+    
+    // REFRESH la 7 SECUNDE (7000ms)
+    setInterval(loadMessages, 7000); 
+    setTimeout(() => addMessageToChat({ 
+        mesaj: 'Bun venit! Un consultant vă va răspunde în curând.', 
+        timestamp: new Date().toISOString(), 
+        isUser: false 
+    }), 1000);
+}
 
-    // ==================== ELEMENTE DOM CHAT ====================
-    const chatContainer = document.getElementById('chatContainer');
-    const chatToggle = document.getElementById('chatToggle');
-    const chatCloseBtn = document.getElementById('chatCloseBtn');
-    const chatBadge = document.getElementById('chatBadge');
-    const loginSection = document.getElementById('loginSection');
-    const chatMain = document.getElementById('chatMain');
-    const messagesArea = document.getElementById('messagesArea');
-    const messageInput = document.getElementById('messageInput');
-    const numeInput = document.getElementById('nume');
-    const institutieInput = document.getElementById('institutie');
-    const imageUploadInput = document.getElementById('imageUpload');
+// SEND MESSAGE
+async function sendMessage(customMessage = null) {
+    if (!userData) return;
+    const mesaj = (customMessage || messageInput.value).trim();
+    if (!mesaj) return;
 
-    // ==================== FUNCȚII CHAT ====================
-    chatToggle.addEventListener('click', () => {
-        chatContainer.classList.toggle('open');
-        if (chatContainer.classList.contains('open')) {
-            chatBadge.classList.remove('visible');
-            if (userData) messageInput.focus();
-        }
-    });
-    chatCloseBtn.addEventListener('click', () => chatContainer.classList.remove('open'));
+    messageInput.disabled = true;
+    const originalText = messageInput.value;
+    messageInput.value = '';
 
-    async function makeRequest(params) {
-        const url = new URL(SCRIPT_URL);
-        Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
-        try {
-            const response = await fetch(url.toString());
-            const text = await response.text();
-            try { return JSON.parse(text); } catch(e) { return { status: 'error', message: 'Răspuns invalid' }; }
-        } catch (error) { throw error; }
-    }
+    try {
+        const result = await makeRequest({
+            action: 'newMessage',
+            nume: userData.nume,
+            institutie: userData.institutie,
+            mesaj: mesaj,
+            imagine: mesaj.includes('![') ? mesaj : ''
+        });
 
-    async function getUserIp() {
-        try { const r = await fetch('https://api.ipify.org?format=json'); const d = await r.json(); return d.ip; } 
-        catch { return 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2,5); }
-    }
-
-    function generateMessageId(m) { return `${m.timestamp}_${m.mesaj}_${m.isUser ? 'user' : 'consultant'}`; }
-    function isMessageDisplayed(id) { return displayedMessages.has(id); }
-
-    function addMessageToChat(msg) {
-        const mid = generateMessageId(msg);
-        if (isMessageDisplayed(mid)) return false;
-        const loading = messagesArea.querySelector('.loading');
-        if (loading) loading.remove();
-        displayedMessages.add(mid);
-        if (!lastMessageTimestamp || new Date(msg.timestamp) > new Date(lastMessageTimestamp)) lastMessageTimestamp = msg.timestamp;
-        
-        const div = document.createElement('div');
-        div.className = `message ${msg.isUser ? 'user' : 'consultant'}`;
-        
-        let content = !msg.isUser ? '<strong>🤵 Consultant</strong><br>' : '';
-        
-        const imageRegex = /!\[.*?\]\((.*?)\)/g;
-        let match;
-        let lastIndex = 0;
-        let text = msg.mesaj;
-        let parts = [];
-        
-        while ((match = imageRegex.exec(text)) !== null) {
-            if (match.index > lastIndex) {
-                parts.push({ type: 'text', content: text.substring(lastIndex, match.index) });
-            }
-            parts.push({ type: 'image', url: match[1] });
-            lastIndex = match.index + match[0].length;
-        }
-        if (lastIndex < text.length) {
-            parts.push({ type: 'text', content: text.substring(lastIndex) });
-        }
-        
-        if (parts.length === 0) {
-            content += text;
-        } else {
-            parts.forEach(part => {
-                if (part.type === 'text') {
-                    content += part.content;
-                } else if (part.type === 'image') {
-                    content += `<img src="${part.url}" alt="Imagine" style="max-width: 100%; border-radius: 10px; margin-top: 5px;">`;
-                }
-            });
-        }
-        
-        const time = new Date(msg.timestamp).toLocaleTimeString('ro-RO', { hour:'2-digit', minute:'2-digit' });
-        content += `<div class="message-time">${time}</div>`;
-        div.innerHTML = content;
-        messagesArea.appendChild(div);
-        messagesArea.scrollTop = messagesArea.scrollHeight;
-        return true;
-    }
-
-    async function login() {
-        const nume = numeInput.value.trim();
-        const institutie = institutieInput.value.trim();
-        if (!nume || !institutie) { alert('Completează toate câmpurile!'); return; }
-        userIp = await getUserIp();
-        userData = { nume, institutie, ip: userIp };
-        loginSection.classList.add('hidden');
-        chatMain.classList.remove('hidden');
-        await loadMessages();
-        setInterval(loadMessages, 3000);
-        setTimeout(() => addMessageToChat({ mesaj:'Bun venit! Un consultant vă va răspunde în curând.', timestamp: new Date().toISOString(), isUser:false }), 1000);
-    }
-
-    async function sendMessage(customMessage = null) {
-        if (!userData) return;
-        const mesaj = (customMessage || messageInput.value).trim();
-        if (!mesaj) return;
-
-        messageInput.disabled = true;
-        const originalText = messageInput.value;
-        messageInput.value = '';
-
-        const localTimestamp = new Date().toISOString();
-
-        try {
-            const result = await makeRequest({
-                action:'newMessage',
-                nume:userData.nume,
-                institutie:userData.institutie,
+        if (result.status === 'success') {
+            addMessageToChat({
                 mesaj,
-                imagine: mesaj.includes('![') ? mesaj : '',
-                ip:userData.ip
+                timestamp: result.data?.timestamp || new Date().toISOString(),
+                isUser: true
             });
+        } else throw new Error(result.message);
 
-            if (result.status === 'success') {
-                addMessageToChat({
-                    mesaj,
-                    timestamp: result.data?.timestamp || localTimestamp,
-                    isUser:true
+    } catch (error) {
+        console.error('Send error:', error);
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'error-message';
+        errorDiv.textContent = 'Eroare la trimitere mesaj: ' + error.message;
+        messagesArea.appendChild(errorDiv);
+        messageInput.value = originalText;
+    } finally {
+        messageInput.disabled = false;
+        messageInput.focus();
+    }
+}
+
+// LOAD MESSAGES
+async function loadMessages() {
+    if (!userData) return;
+    try {
+        const result = await makeRequest({ action: 'fetchMessages' });
+        if (result.status === 'success' && result.data?.messages) {
+            result.data.messages.forEach(msg => {
+                if (msg.mesaj) addMessageToChat({ 
+                    mesaj: msg.mesaj, 
+                    timestamp: msg.timestamp, 
+                    isUser: true 
                 });
-            } else throw new Error(result.message);
-
-        } catch (error) {
-            const errDiv = document.createElement('div');
-            errDiv.className = 'error-message';
-            errDiv.textContent = '❌ Nu s-a putut trimite. Reîncearcă.';
-            document.querySelector('.input-area').prepend(errDiv);
-            setTimeout(()=>errDiv.remove(),3000);
-            messageInput.value = originalText;
-        } finally {
-            messageInput.disabled = false;
-            messageInput.focus();
-        }
-    }
-
-    async function loadMessages() {
-        if (!userData || !userIp) return;
-        try {
-            const params = { action:'fetchMessages', userIp };
-            if (lastMessageTimestamp) params.lastTimestamp = lastMessageTimestamp;
-            const result = await makeRequest(params);
-            if (result.status === 'success' && result.data?.messages) {
-                result.data.messages.forEach(msg => {
-                    if (msg.ip === userIp && msg.mesaj) addMessageToChat({ mesaj:msg.mesaj, timestamp:msg.timestamp, isUser:true });
-                    if (msg.ip === userIp && msg.raspuns?.trim()) addMessageToChat({ mesaj:msg.raspuns, timestamp:msg.timestamp, isUser:false });
+                if (msg.raspuns?.trim()) addMessageToChat({ 
+                    mesaj: msg.raspuns, 
+                    timestamp: msg.timestamp, 
+                    isUser: false 
                 });
-            }
-        } catch (e) { console.error('Eroare preluare mesaje', e); }
-    }
-
-    function uploadImage() {
-        imageUploadInput.click();
-    }
-
-    imageUploadInput.addEventListener('change', async function(e) {
-        const file = e.target.files[0];
-        if (!file) return;
-        
-        if (!file.type.startsWith('image/')) {
-            alert('Te rugăm să selectezi o imagine.');
-            imageUploadInput.value = '';
-            return;
-        }
-        
-        if (!userData) {
-            alert('Trebuie să fii autentificat în chat pentru a încărca imagini.');
-            imageUploadInput.value = '';
-            return;
-        }
-        
-        const loadingMsg = document.createElement('div');
-        loadingMsg.className = 'message consultant';
-        loadingMsg.innerHTML = '⏫ Se încarcă imaginea...';
-        messagesArea.appendChild(loadingMsg);
-        messagesArea.scrollTop = messagesArea.scrollHeight;
-        
-        const formData = new FormData();
-        formData.append('action', 'uploadImage');
-        formData.append('image', file);
-        formData.append('nume', userData.nume);
-        formData.append('institutie', userData.institutie);
-        formData.append('ip', userIp);
-        
-        try {
-            const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 30000);
-            
-            const response = await fetch(SCRIPT_URL, {
-                method: 'POST',
-                body: formData,
-                signal: controller.signal
             });
-            clearTimeout(timeoutId);
-            
-            const result = await response.json();
-            loadingMsg.remove();
-            
-            if (result.status === 'success' && result.data?.imageUrl) {
-                const imageMessage = `![Imagine](${result.data.imageUrl})`;
-                await sendMessage(imageMessage);
-            } else {
-                throw new Error(result.message || 'Eroare la încărcare');
-            }
-        } catch (error) {
-            loadingMsg.remove();
-            const errDiv = document.createElement('div');
-            errDiv.className = 'error-message';
-            errDiv.textContent = error.name === 'AbortError' ? '❌ Timpul de încărcare a expirat.' : '❌ Imaginea nu s-a putut încărca.';
-            document.querySelector('.input-area').prepend(errDiv);
-            setTimeout(() => errDiv.remove(), 3000);
-            console.error(error);
-        } finally {
-            imageUploadInput.value = '';
         }
+    } catch (e) { 
+        console.error('Load messages error:', e); 
+    }
+}
+
+// ADD MESSAGE TO CHAT
+function addMessageToChat(msgObj) {
+    if (!msgObj.mesaj || displayedMessages.has(msgObj.mesaj + msgObj.timestamp)) return;
+    displayedMessages.add(msgObj.mesaj + msgObj.timestamp);
+    
+    const messageDiv = document.createElement('div');
+    messageDiv.className = 'message ' + (msgObj.isUser ? 'user' : 'consultant');
+    messageDiv.innerHTML = `
+        <div>${msgObj.mesaj}</div>
+        <div class="message-time">${new Date(msgObj.timestamp).toLocaleTimeString()}</div>
+    `;
+    messagesArea.appendChild(messageDiv);
+    messagesArea.scrollTop = messagesArea.scrollHeight;
+}
+
+// EVENT LISTENERS
+chatToggle.addEventListener('click', () => {
+    chatContainer.classList.toggle('open');
+    if (chatContainer.classList.contains('open')) {
+        chatBadge.classList.remove('visible');
+    }
+});
+
+chatCloseBtn.addEventListener('click', () => {
+    chatContainer.classList.remove('open');
+});
+
+loginBtn.addEventListener('click', login);
+sendBtn.addEventListener('click', () => sendMessage());
+messageInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        sendMessage();
+    }
+});
+
+// THEME SWITCHER
+const themeSwitcher = document.getElementById('themeSwitcher');
+const themes = [
+    'theme-default', 'theme-cyber', 'theme-gradient', 'theme-corporate',
+    'theme-futuristic', 'theme-cosmic-neon', 'theme-eco-minimal',
+    'theme-dark-glass', 'theme-sunset-gradient', 'theme-ice-tech',
+    'theme-ocean-breeze', 'theme-ai-neural', 'theme-soft-light'
+];
+let currentThemeIndex = 0;
+
+themeSwitcher.addEventListener('click', () => {
+    document.body.classList.remove(themes[currentThemeIndex]);
+    currentThemeIndex = (currentThemeIndex + 1) % themes.length;
+    document.body.classList.add(themes[currentThemeIndex]);
+    localStorage.setItem('theme', themes[currentThemeIndex]);
+});
+
+// LOAD SAVED THEME
+const savedTheme = localStorage.getItem('theme') || 'theme-default';
+document.body.classList.add(savedTheme);
+currentThemeIndex = themes.indexOf(savedTheme);
+
+// ANIMARE BUTOANE
+window.addEventListener('load', () => {
+    const buttons = document.querySelectorAll('.menu-button');
+    buttons.forEach((btn, index) => {
+        setTimeout(() => {
+            btn.classList.add('visible');
+        }, index * 100);
     });
+});
 
-    messageInput.addEventListener('input', function() { this.style.height = 'auto'; this.style.height = (this.scrollHeight)+'px'; });
-    messageInput.addEventListener('keypress', function(e) { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); } });
+// DATE & TIME
+function updateDateTime() {
+    const now = new Date();
+    document.getElementById('date').textContent = now.toLocaleDateString('ro-RO');
+    document.getElementById('time').textContent = now.toLocaleTimeString('ro-RO');
+}
+updateDateTime();
+setInterval(updateDateTime, 1000);
 
-    // Particule
-    function createParticles() {
-        const container = document.getElementById('particles');
-        if (!container) return;
-        for (let i=0; i<15; i++) {
-            const p = document.createElement('div');
-            p.className = 'particle';
-            p.style.left = Math.random()*100+'%';
-            p.style.top = Math.random()*100+'%';
-            p.style.animationDelay = Math.random()*15+'s';
-            p.style.animationDuration = (10+Math.random()*10)+'s';
-            container.appendChild(p);
-        }
+// TICKER
+fetch(SCRIPT_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ action: 'getTicker' })
+})
+.then(r => r.json())
+.then(data => {
+    if (data.status === 'success' && data.data?.ticker) {
+        document.getElementById('ticker-text').textContent = data.data.ticker;
     }
-    createParticles();
+})
+.catch(() => {
+    document.getElementById('ticker-text').textContent = 'Anunț importantă: Sistem activ!';
+});
 
-    function animateButtons() {
-        const buttons = document.querySelectorAll('.menu-button');
-        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry, index) => {
-                if (entry.isIntersecting) {
-                    setTimeout(() => entry.target.classList.add('visible'), prefersReducedMotion ? 0 : index * 80);
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold:0.1 });
-        buttons.forEach(btn => observer.observe(btn));
+// PARTICULE
+function createParticles() {
+    const particlesContainer = document.getElementById('particles');
+    for (let i = 0; i < 30; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.top = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 15 + 's';
+        particlesContainer.appendChild(particle);
     }
-    animateButtons();
-
-    function updateDateTime() {
-        const now = new Date();
-        document.getElementById('date').textContent = now.toLocaleDateString('ro-RO', { timeZone:'Europe/Chisinau', day:'2-digit', month:'2-digit', year:'numeric' });
-        document.getElementById('time').textContent = now.toLocaleTimeString('ro-RO', { timeZone:'Europe/Chisinau', hour:'2-digit', minute:'2-digit', second:'2-digit' });
-    }
-    setInterval(updateDateTime, 1000);
-    updateDateTime();
-
-    const phoneUrl = 'https://raw.githubusercontent.com/mailinternetx-sudo/suport/refs/heads/main/suport.txt';
-    fetch(phoneUrl).then(r=>r.text()).then(t=>{ document.getElementById('phone-contact').textContent = t.trim() || 'Telefon: indisponibil'; })
-        .catch(()=>{ document.getElementById('phone-contact').textContent = 'Telefon: eroare'; });
-    const tickerUrl = 'https://raw.githubusercontent.com/mailinternetx-sudo/my-text-file/refs/heads/main/anunt.txt';
-    function loadTicker() {
-        fetch(tickerUrl).then(r=>r.text()).then(t=>{ document.getElementById('ticker-text').textContent = t.trim().replace(/\n/g,' • ')+'   '; })
-            .catch(()=>{ document.getElementById('ticker-text').textContent = 'Eroare anunț'; });
-    }
-    loadTicker(); setInterval(loadTicker, 600000);
-
-    // ==================== TEMA (SWITCHER CU LOCALSTORAGE) ====================
-    const themeSwitcher = document.getElementById('themeSwitcher');
-    const themes = [
-        'default', 'cyber', 'gradient', 'corporate', 'futuristic',
-        'cosmic-neon', 'eco-minimal', 'dark-glass', 'sunset-gradient',
-        'ice-tech', 'ocean-breeze', 'ai-neural', 'soft-light'
-    ];
-    let savedTheme = localStorage.getItem('selectedTheme') || 'default';
-    if (!themes.includes(savedTheme)) savedTheme = 'default';
-    document.body.classList.add(`theme-${savedTheme}`);
-    let currentThemeIndex = themes.indexOf(savedTheme);
-
-    themeSwitcher.addEventListener('click', () => {
-        currentThemeIndex = (currentThemeIndex + 1) % themes.length;
-        const newTheme = themes[currentThemeIndex];
-        themes.forEach(t => document.body.classList.remove(`theme-${t}`));
-        document.body.classList.add(`theme-${newTheme}`);
-        localStorage.setItem('selectedTheme', newTheme);
-    });
-
-    window.login = login; window.sendMessage = sendMessage; window.uploadImage = uploadImage;
+}
+createParticles();
 </script>
-
-<!-- Analytics -->
-<span id="wts2205835"></span>
-<script>var wts=document.createElement('script');wts.async=true;wts.src='https://app.ardalio.com/wts7.js';document.head.appendChild(wts);wts.onload = function(){ wtsl7(2205835,5); };</script>
-<noscript><img src="https://app.ardalio.com/7/5/2205835.png"></noscript>
-
 </body>
 </html>
