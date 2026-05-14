@@ -921,6 +921,12 @@
     .aplmail-button {
         background: linear-gradient(135deg, #1e3a5f, #0f2847);
     }
+    .programs-button {
+        background: linear-gradient(135deg, #FF6B35, #D63230);
+    }
+    .radio-button {
+        background: linear-gradient(135deg, #4B7BE5, #3B5998);
+    }
 
     .messages-area::-webkit-scrollbar { width:6px; }
     .messages-area::-webkit-scrollbar-track { background:rgba(0,0,0,0.05); border-radius:3px; }
@@ -1000,271 +1006,193 @@
     </a>
 </div>
 
+<!-- Contact info -->
 <div class="contact">
-    Contacte: <a href="mailto:support@example.com">support@example.com</a>
+    <p>Trebuie ajutor? <a href="mailto:contact@example.com">Contactează-ne</a></p>
 </div>
 
+<!-- Footer -->
 <footer>
-    © 2025 Site Unificat. Toate drepturile rezervate.
+    <p>&copy; 2025 Site unificat pentru acces. Toate drepturile rezervate.</p>
 </footer>
 
 <!-- Chat Container -->
 <div class="chat-container" id="chatContainer">
     <div class="chat-header">
-        <button class="chat-close-btn" id="chatCloseBtn">✕</button>
-        <h2>Consultant</h2>
-        <p>Disponibil 24/7</p>
+        <button class="chat-close-btn" id="chatCloseBtn">×</button>
+        <h2>Chat Support</h2>
+        <p>Suntem aici să te ajutăm</p>
     </div>
     <div class="login-section" id="loginSection">
-        <input type="text" id="numeInput" placeholder="Introduceți numele..." />
-        <input type="text" id="institutieInput" placeholder="Introduceți instituția..." />
+        <input type="text" id="nameInput" placeholder="Introdu-ți numele" />
+        <input type="email" id="emailInput" placeholder="Introdu-ți email-ul" />
         <button id="loginBtn">Intră în chat</button>
     </div>
-    <div class="messages-area hidden" id="messagesArea"></div>
-    <div class="input-area hidden" id="inputArea">
-        <textarea id="messageInput" placeholder="Introduceți mesajul..."></textarea>
+    <div class="messages-area" id="messagesArea"></div>
+    <div class="input-area" id="inputArea" style="display:none;">
+        <textarea id="messageInput" placeholder="Scrie mesajul tău..." rows="1"></textarea>
         <div class="input-actions">
             <button id="sendBtn">➤</button>
         </div>
     </div>
 </div>
 
+<!-- Chat Toggle Button -->
 <button class="chat-toggle" id="chatToggle">
     <span class="chat-badge" id="chatBadge">1</span>
-    <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
+    <svg viewBox="0 0 24 24">
+        <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/>
+    </svg>
 </button>
 
+<!-- Bottom Left Buttons - Useful Programs & Radio Online -->
+<div class="bottom-left-buttons">
+    <a href="https://www.chatgpt.com" target="_blank" class="bottom-button chatgpt-button" title="ChatGPT">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
+        </svg>
+        ChatGPT
+    </a>
+    <a href="https://mail.google.com" target="_blank" class="bottom-button gmail-button" title="Gmail">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+        </svg>
+        Gmail
+    </a>
+    <a href="https://mail.yahoo.com" target="_blank" class="bottom-button yahoo-button" title="Yahoo Mail">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z"/>
+        </svg>
+        Yahoo Mail
+    </a>
+    <a href="https://aplmail.md" target="_blank" class="bottom-button aplmail-button" title="AplMail">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+        </svg>
+        AplMail
+    </a>
+    <a href="https://drive.google.com/drive/folders/1RGOCNVfbkBZWEoxZucHnuvG1IbK0d6EW?usp=sharing" target="_blank" class="bottom-button programs-button" title="Programe Utile">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+        </svg>
+        Programe
+    </a>
+    <a href="https://drive.google.com/drive/folders/1E6IGeImJPDHxsTKiKTN_tFX5bV5RWfi9?usp=drive_link" target="_blank" class="bottom-button radio-button" title="Radio On-line">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm0-13c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0 8c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/>
+        </svg>
+        Radio
+    </a>
+</div>
+
 <script>
-// ==================== CONFIGURAȚIE ====================
-const SCRIPT_URL = 'https://1.mail-internetx.workers.dev/';
-
-let userData = null;
-let displayedMessages = new Set();
-let lastMessageTimestamp = null;
-
-// DOM ELEMENTS
-const chatContainer = document.getElementById('chatContainer');
-const chatToggle = document.getElementById('chatToggle');
-const chatCloseBtn = document.getElementById('chatCloseBtn');
-const loginSection = document.getElementById('loginSection');
-const messagesArea = document.getElementById('messagesArea');
-const inputArea = document.getElementById('inputArea');
-const numeInput = document.getElementById('numeInput');
-const institutieInput = document.getElementById('institutieInput');
-const loginBtn = document.getElementById('loginBtn');
-const messageInput = document.getElementById('messageInput');
-const sendBtn = document.getElementById('sendBtn');
-const chatBadge = document.getElementById('chatBadge');
-
-// FUNCȚIE REQUEST THROUGH WORKER
-async function makeRequest(params) {
-    try {
-        const response = await fetch(SCRIPT_URL, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(params)
-        });
-        return await response.json();
-    } catch (error) { 
-        console.error('Request error:', error);
-        throw error; 
-    }
-}
-
-// LOGIN FUNCTION
-async function login() {
-    const nume = numeInput.value.trim();
-    const institutie = institutieInput.value.trim();
-    if (!nume || !institutie) { 
-        alert('Completează toate câmpurile!'); 
-        return; 
-    }
-    
-    userData = { nume, institutie };
-    loginSection.classList.add('hidden');
-    messagesArea.classList.remove('hidden');
-    inputArea.classList.remove('hidden');
-    await loadMessages();
-    
-    // REFRESH la 7 SECUNDE (7000ms)
-    setInterval(loadMessages, 7000); 
-    setTimeout(() => addMessageToChat({ 
-        mesaj: 'Bun venit! Un consultant vă va răspunde în curând.', 
-        timestamp: new Date().toISOString(), 
-        isUser: false 
-    }), 1000);
-}
-
-// SEND MESSAGE
-async function sendMessage(customMessage = null) {
-    if (!userData) return;
-    const mesaj = (customMessage || messageInput.value).trim();
-    if (!mesaj) return;
-
-    messageInput.disabled = true;
-    const originalText = messageInput.value;
-    messageInput.value = '';
-
-    try {
-        const result = await makeRequest({
-            action: 'newMessage',
-            nume: userData.nume,
-            institutie: userData.institutie,
-            mesaj: mesaj,
-            imagine: mesaj.includes('![') ? mesaj : ''
-        });
-
-        if (result.status === 'success') {
-            addMessageToChat({
-                mesaj,
-                timestamp: result.data?.timestamp || new Date().toISOString(),
-                isUser: true
-            });
-        } else throw new Error(result.message);
-
-    } catch (error) {
-        console.error('Send error:', error);
-        const errorDiv = document.createElement('div');
-        errorDiv.className = 'error-message';
-        errorDiv.textContent = 'Eroare la trimitere mesaj: ' + error.message;
-        messagesArea.appendChild(errorDiv);
-        messageInput.value = originalText;
-    } finally {
-        messageInput.disabled = false;
-        messageInput.focus();
-    }
-}
-
-// LOAD MESSAGES
-async function loadMessages() {
-    if (!userData) return;
-    try {
-        const result = await makeRequest({ action: 'fetchMessages' });
-        if (result.status === 'success' && result.data?.messages) {
-            result.data.messages.forEach(msg => {
-                if (msg.mesaj) addMessageToChat({ 
-                    mesaj: msg.mesaj, 
-                    timestamp: msg.timestamp, 
-                    isUser: true 
-                });
-                if (msg.raspuns?.trim()) addMessageToChat({ 
-                    mesaj: msg.raspuns, 
-                    timestamp: msg.timestamp, 
-                    isUser: false 
-                });
-            });
-        }
-    } catch (e) { 
-        console.error('Load messages error:', e); 
-    }
-}
-
-// ADD MESSAGE TO CHAT
-function addMessageToChat(msgObj) {
-    if (!msgObj.mesaj || displayedMessages.has(msgObj.mesaj + msgObj.timestamp)) return;
-    displayedMessages.add(msgObj.mesaj + msgObj.timestamp);
-    
-    const messageDiv = document.createElement('div');
-    messageDiv.className = 'message ' + (msgObj.isUser ? 'user' : 'consultant');
-    messageDiv.innerHTML = `
-        <div>${msgObj.mesaj}</div>
-        <div class="message-time">${new Date(msgObj.timestamp).toLocaleTimeString()}</div>
-    `;
-    messagesArea.appendChild(messageDiv);
-    messagesArea.scrollTop = messagesArea.scrollHeight;
-}
-
-// EVENT LISTENERS
-chatToggle.addEventListener('click', () => {
-    chatContainer.classList.toggle('open');
-    if (chatContainer.classList.contains('open')) {
-        chatBadge.classList.remove('visible');
-    }
-});
-
-chatCloseBtn.addEventListener('click', () => {
-    chatContainer.classList.remove('open');
-});
-
-loginBtn.addEventListener('click', login);
-sendBtn.addEventListener('click', () => sendMessage());
-messageInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter' && !e.shiftKey) {
-        e.preventDefault();
-        sendMessage();
-    }
-});
-
-// THEME SWITCHER
-const themeSwitcher = document.getElementById('themeSwitcher');
-const themes = [
-    'theme-default', 'theme-cyber', 'theme-gradient', 'theme-corporate',
-    'theme-futuristic', 'theme-cosmic-neon', 'theme-eco-minimal',
-    'theme-dark-glass', 'theme-sunset-gradient', 'theme-ice-tech',
-    'theme-ocean-breeze', 'theme-ai-neural', 'theme-soft-light'
-];
-let currentThemeIndex = 0;
-
-themeSwitcher.addEventListener('click', () => {
-    document.body.classList.remove(themes[currentThemeIndex]);
-    currentThemeIndex = (currentThemeIndex + 1) % themes.length;
-    document.body.classList.add(themes[currentThemeIndex]);
-    localStorage.setItem('theme', themes[currentThemeIndex]);
-});
-
-// LOAD SAVED THEME
-const savedTheme = localStorage.getItem('theme') || 'theme-default';
-document.body.classList.add(savedTheme);
-currentThemeIndex = themes.indexOf(savedTheme);
-
-// ANIMARE BUTOANE
-window.addEventListener('load', () => {
-    const buttons = document.querySelectorAll('.menu-button');
-    buttons.forEach((btn, index) => {
-        setTimeout(() => {
-            btn.classList.add('visible');
-        }, index * 100);
-    });
-});
-
-// DATE & TIME
-function updateDateTime() {
-    const now = new Date();
-    document.getElementById('date').textContent = now.toLocaleDateString('ro-RO');
-    document.getElementById('time').textContent = now.toLocaleTimeString('ro-RO');
-}
-updateDateTime();
-setInterval(updateDateTime, 1000);
-
-// TICKER
-fetch(SCRIPT_URL, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ action: 'getTicker' })
-})
-.then(r => r.json())
-.then(data => {
-    if (data.status === 'success' && data.data?.ticker) {
-        document.getElementById('ticker-text').textContent = data.data.ticker;
-    }
-})
-.catch(() => {
-    document.getElementById('ticker-text').textContent = 'Anunț importantă: Sistem activ!';
-});
-
-// PARTICULE
+// Particles animation
 function createParticles() {
-    const particlesContainer = document.getElementById('particles');
+    const container = document.getElementById('particles');
     for (let i = 0; i < 30; i++) {
         const particle = document.createElement('div');
         particle.className = 'particle';
         particle.style.left = Math.random() * 100 + '%';
         particle.style.top = Math.random() * 100 + '%';
         particle.style.animationDelay = Math.random() * 15 + 's';
-        particlesContainer.appendChild(particle);
+        container.appendChild(particle);
     }
 }
+
+// Date and time display
+function updateDateTime() {
+    const now = new Date();
+    const dateStr = now.toLocaleDateString('ro-RO', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+    const timeStr = now.toLocaleTimeString('ro-RO', { hour: '2-digit', minute: '2-digit' });
+    document.getElementById('date').textContent = dateStr;
+    document.getElementById('time').textContent = timeStr;
+}
+
+// Ticker animation
+function updateTicker() {
+    const announcements = [
+        '📢 Bienvenue sur notre portail unifié!',
+        '🔔 Accédez à tous les services gouvernementaux',
+        '✨ Interface moderne et sécurisée'
+    ];
+    const ticker = announcements[Math.floor(Math.random() * announcements.length)];
+    document.getElementById('ticker-text').textContent = ticker;
+}
+
+// Theme switcher
+const themes = ['default', 'cyber', 'gradient', 'corporate', 'futuristic', 'cosmic-neon', 'eco-minimal', 'dark-glass', 'sunset-gradient', 'ice-tech', 'ocean-breeze', 'ai-neural', 'soft-light'];
+let currentThemeIndex = 0;
+
+document.getElementById('themeSwitcher').addEventListener('click', () => {
+    currentThemeIndex = (currentThemeIndex + 1) % themes.length;
+    document.body.className = `theme-${themes[currentThemeIndex]}`;
+    localStorage.setItem('selectedTheme', themes[currentThemeIndex]);
+});
+
+// Load saved theme
+const savedTheme = localStorage.getItem('selectedTheme');
+if (savedTheme) {
+    document.body.className = `theme-${savedTheme}`;
+    currentThemeIndex = themes.indexOf(savedTheme);
+}
+
+// Animate buttons on load
+window.addEventListener('load', () => {
+    const buttons = document.querySelectorAll('.menu-button');
+    buttons.forEach((btn, index) => {
+        setTimeout(() => btn.classList.add('visible'), index * 50);
+    });
+});
+
+// Chat functionality
+const chatToggle = document.getElementById('chatToggle');
+const chatContainer = document.getElementById('chatContainer');
+const chatCloseBtn = document.getElementById('chatCloseBtn');
+const loginBtn = document.getElementById('loginBtn');
+const nameInput = document.getElementById('nameInput');
+const emailInput = document.getElementById('emailInput');
+const messageInput = document.getElementById('messageInput');
+const sendBtn = document.getElementById('sendBtn');
+const messagesArea = document.getElementById('messagesArea');
+const inputArea = document.getElementById('inputArea');
+const loginSection = document.getElementById('loginSection');
+
+chatToggle.addEventListener('click', () => {
+    chatContainer.classList.toggle('open');
+});
+
+chatCloseBtn.addEventListener('click', () => {
+    chatContainer.classList.remove('open');
+});
+
+loginBtn.addEventListener('click', () => {
+    if (nameInput.value && emailInput.value) {
+        loginSection.style.display = 'none';
+        inputArea.style.display = 'flex';
+        addMessage('Consultant', `Bună ${nameInput.value}! Cum te pot ajuta?`);
+    }
+});
+
+sendBtn.addEventListener('click', () => {
+    if (messageInput.value) {
+        addMessage('User', messageInput.value);
+        messageInput.value = '';
+    }
+});
+
+function addMessage(sender, text) {
+    const messageEl = document.createElement('div');
+    messageEl.className = `message ${sender === 'User' ? 'user' : 'consultant'}`;
+    messageEl.textContent = text;
+    messagesArea.appendChild(messageEl);
+    messagesArea.scrollTop = messagesArea.scrollHeight;
+}
+
+// Initialize
 createParticles();
+updateDateTime();
+updateTicker();
+setInterval(updateDateTime, 1000);
 </script>
 </body>
 </html>
