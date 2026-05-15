@@ -6,7 +6,7 @@
 <title>Site unificat pentru acces · Theme switcher</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
     :root {
         --bg-primary: #0a1628;
@@ -21,13 +21,9 @@
         --warning: #ffd93d;
         --info: #4dabf7;
         --success: #51cf66;
-
-        /* variabile pentru straturile de fundal / grid */
         --bg-grid-color: rgba(0, 212, 170, 0.03);
         --bg-gradient-accent1: rgba(0, 212, 170, 0.08);
         --bg-gradient-accent2: rgba(0, 100, 200, 0.1);
-
-        /* variabile pentru chat (se vor suprascrie în teme) */
         --chat-header-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         --chat-user-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         --chat-consultant-bg: #ffffff;
@@ -40,17 +36,11 @@
         --chat-shadow: rgba(102, 126, 234, 0.4);
     }
 
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: 'Inter', sans-serif;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'DM Sans', sans-serif; }
 
     body {
-        font-family: 'Inter', sans-serif;
-        margin: 0;
-        padding: 0;
+        font-family: 'DM Sans', sans-serif;
+        margin: 0; padding: 0;
         background: var(--bg-primary);
         color: var(--fg-primary);
         text-align: center;
@@ -59,14 +49,8 @@
         overflow-x: hidden;
     }
 
-    /* Animated background */
     .bg-layer {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
+        position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
         background: 
             radial-gradient(ellipse at 20% 20%, var(--bg-gradient-accent1) 0%, transparent 50%),
             radial-gradient(ellipse at 80% 80%, var(--bg-gradient-accent2) 0%, transparent 50%),
@@ -74,45 +58,20 @@
     }
 
     .bg-grid {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
+        position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
         background-image: 
             linear-gradient(var(--bg-grid-color) 1px, transparent 1px),
             linear-gradient(90deg, var(--bg-grid-color) 1px, transparent 1px);
         background-size: 60px 60px;
         animation: gridMove 20s linear infinite;
     }
+    @keyframes gridMove { 0% { transform: translate(0, 0); } 100% { transform: translate(60px, 60px); } }
 
-    @keyframes gridMove {
-        0% { transform: translate(0, 0); }
-        100% { transform: translate(60px, 60px); }
-    }
-
-    /* Floating particles */
-    .particles {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-        pointer-events: none;
-    }
-
+    .particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
     .particle {
-        position: absolute;
-        width: 4px;
-        height: 4px;
-        background: var(--accent);
-        border-radius: 50%;
-        opacity: 0.3;
-        animation: floatParticle 15s infinite ease-in-out;
+        position: absolute; width: 4px; height: 4px; background: var(--accent);
+        border-radius: 50%; opacity: 0.3; animation: floatParticle 15s infinite ease-in-out;
     }
-
     @keyframes floatParticle {
         0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.3; }
         25% { transform: translate(100px, -150px) scale(1.5); opacity: 0.6; }
@@ -120,1079 +79,1084 @@
         75% { transform: translate(80px, -150px) scale(1.3); opacity: 0.5; }
     }
 
-    header {
-        margin-top: 30px;
-        margin-bottom: 50px;
-        position: relative;
-    }
+    header { margin-top: 30px; margin-bottom: 50px; position: relative; }
 
     .logo {
-        width: 280px;
-        margin-bottom: 20px;
-        border-radius: 20px;
+        width: 280px; margin-bottom: 20px; border-radius: 20px;
         box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         transition: transform 0.4s ease, box-shadow 0.4s ease;
     }
-
-    .logo:hover {
-        transform: scale(1.05) rotate(-2deg);
-        box-shadow: 0 25px 50px rgba(0, 212, 170, 0.2);
-    }
+    .logo:hover { transform: scale(1.05) rotate(-2deg); box-shadow: 0 25px 50px rgba(0, 212, 170, 0.2); }
 
     h1 {
-        font-family: 'Space Grotesk', sans-serif;
-        font-size: 2.8em;
-        font-weight: 700;
-        color: var(--fg-primary);
-        letter-spacing: -1px;
-        margin: 0;
+        font-family: 'Outfit', sans-serif;
+        font-size: 2.8em; font-weight: 700;
+        color: var(--fg-primary); letter-spacing: -1px; margin: 0;
         text-shadow: 0 0 60px var(--accent-glow);
     }
 
-    /* Butoane principale (mărite) */
     .links-container {
-        max-width: 1400px;
-        margin: 0 auto;
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 20px;
-        padding: 20px;
+        max-width: 1400px; margin: 0 auto;
+        display: grid; grid-template-columns: repeat(4, 1fr);
+        gap: 20px; padding: 20px;
     }
 
     .menu-button {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 12px;
-        background: var(--card-bg);
-        backdrop-filter: blur(20px);
-        border: 1px solid var(--border);
-        color: var(--fg-primary);
-        padding: 32px 28px;
-        border-radius: 16px;
-        text-decoration: none;
-        font-size: 1.55em;
-        font-weight: 600;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        display: flex; align-items: center; justify-content: center; gap: 12px;
+        background: var(--card-bg); backdrop-filter: blur(20px);
+        border: 1px solid var(--border); color: var(--fg-primary);
+        padding: 32px 28px; border-radius: 16px; text-decoration: none;
+        font-size: 1.55em; font-weight: 600; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        text-align: center;
-        min-height: 140px;
-        opacity: 0;
-        transform: translateY(40px) scale(0.9);
-        position: relative;
-        overflow: hidden;
+        text-align: center; min-height: 140px;
+        opacity: 0; transform: translateY(40px) scale(0.9);
+        position: relative; overflow: hidden;
     }
-
     .menu-button::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
+        content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
         background: linear-gradient(90deg, transparent, rgba(0, 212, 170, 0.1), transparent);
         transition: left 0.5s ease;
     }
-
-    .menu-button:hover::before {
-        left: 100%;
-    }
-
+    .menu-button:hover::before { left: 100%; }
     .menu-button.big {
-        padding: 42px 36px;
-        font-size: 1.7em;
-        min-height: 170px;
+        padding: 42px 36px; font-size: 1.7em; min-height: 170px;
         background: linear-gradient(135deg, rgba(0, 212, 170, 0.15), var(--card-bg));
     }
+    .menu-button.visible { opacity: 1; transform: translateY(0) scale(1); }
+    .menu-button:hover { transform: translateY(-8px) scale(1.03); box-shadow: 0 20px 50px rgba(0, 212, 170, 0.25); border-color: var(--accent); }
+    .menu-button:active { transform: translateY(-4px) scale(0.98); }
+    .menu-button img { width: 62px; height: 62px; filter: brightness(0) invert(1) drop-shadow(0 2px 4px rgba(0,0,0,0.3)); transition: transform 0.3s ease; }
+    .menu-button:hover img { transform: rotate(-10deg) scale(1.1); }
 
-    .menu-button.visible {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-
-    .menu-button:hover {
-        transform: translateY(-8px) scale(1.03);
-        box-shadow: 0 20px 50px rgba(0, 212, 170, 0.25);
-        border-color: var(--accent);
-    }
-
-    .menu-button:active {
-        transform: translateY(-4px) scale(0.98);
-    }
-
-    .menu-button img {
-        width: 62px;
-        height: 62px;
-        filter: brightness(0) invert(1) drop-shadow(0 2px 4px rgba(0,0,0,0.3));
-        transition: transform 0.3s ease;
-    }
-
-    .menu-button:hover img {
-        transform: rotate(-10deg) scale(1.1);
-    }
-
-    @media (max-width: 1200px) {
-        .links-container { grid-template-columns: repeat(2, 1fr); }
-    }
+    @media (max-width: 1200px) { .links-container { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 600px) {
         .links-container { grid-template-columns: 1fr; padding: 15px; }
-        header { margin-top: 30px; }
-        h1 { font-size: 1.8em; }
-        .logo { width: 200px; }
+        header { margin-top: 30px; } h1 { font-size: 1.8em; } .logo { width: 200px; }
     }
 
-    .contact {
-        margin-top: 60px;
-        font-size: 1.2em;
-        color: var(--fg-secondary);
-    }
-
+    .contact { margin-top: 60px; font-size: 1.2em; color: var(--fg-secondary); }
     .contact a {
-        color: var(--accent);
-        text-decoration: none;
-        font-weight: 600;
-        position: relative;
+        color: var(--accent); text-decoration: none; font-weight: 600; position: relative;
     }
-
     .contact a::after {
-        content: '';
-        position: absolute;
-        bottom: -2px;
-        left: 0;
-        width: 0;
-        height: 2px;
-        background: var(--accent);
-        transition: width 0.3s ease;
+        content: ''; position: absolute; bottom: -2px; left: 0; width: 0; height: 2px;
+        background: var(--accent); transition: width 0.3s ease;
     }
+    .contact a:hover::after { width: 100%; }
 
-    .contact a:hover::after {
-        width: 100%;
-    }
+    footer { margin-top: 80px; margin-bottom: 90px; font-size: 0.9em; color: var(--fg-secondary); padding: 20px; opacity: 0.7; }
 
-    footer {
-        margin-top: 80px;
-        font-size: 0.9em;
-        color: var(--fg-secondary);
-        padding: 20px;
-        opacity: 0.7;
-    }
-
-    /* Ticker (mărit și mutat sus) */
+    /* ==================== TICKER ==================== */
     .ticker-container {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 150px;
-        background: transparent;
-        overflow: hidden;
-        z-index: 10;
-        display: flex;
-        align-items: center;
-        pointer-events: none;
+        position: absolute; top: 0; left: 0; width: 100%; height: 150px;
+        background: transparent; overflow: hidden; z-index: 10;
+        display: flex; align-items: center; pointer-events: none;
     }
-
     .ticker {
-        display: inline-block;
-        padding-left: 100%;
-        animation: ticker 40s linear infinite;
-        font-size: 2.52em;
-        color: var(--danger);
-        font-weight: 700;
-        text-shadow: 0 2px 10px rgba(255, 100, 100, 0.5);
-        white-space: nowrap;
-        pointer-events: none;
+        display: inline-block; padding-left: 100%; animation: ticker 40s linear infinite;
+        font-size: 2.52em; color: var(--danger); font-weight: 700;
+        text-shadow: 0 2px 10px rgba(255, 100, 100, 0.5); white-space: nowrap; pointer-events: none;
     }
+    .ticker:hover { animation-play-state: paused; }
+    @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
 
-    .ticker:hover {
-        animation-play-state: paused;
-    }
-
-    @keyframes ticker {
-        0% { transform: translateX(0); }
-        100% { transform: translateX(-100%); }
-    }
-
-    /* Info box - complet transparentă (străvezie), fără etichete */
+    /* ==================== INFO BOX ==================== */
     #info-box {
+        position: fixed; top: 150px; right: 15px;
+        background: transparent !important; backdrop-filter: none !important;
+        color: var(--fg-primary); font-family: 'Outfit', sans-serif;
+        font-size: 1.3rem; font-weight: 600; padding: 16px 22px;
+        border-radius: 20px; border: none; text-align: right; z-index: 100;
+        box-shadow: none; line-height: 1.5; text-shadow: 0 0 15px var(--accent-glow);
+    }
+    #info-box div { margin: 6px 0; display: flex; align-items: center; justify-content: flex-end; gap: 10px; }
+    .status-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); animation: pulse 2s infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.2); } }
+
+    /* ==================== WEBSTAT + THEME SWITCHER ==================== */
+    /* webstat mutat jos centru */
+    #webstat-box {
         position: fixed;
-        top: 150px;
-        right: 15px;
-        background: transparent !important; /* forțat transparent */
-        backdrop-filter: none !important;
-        color: var(--fg-primary);
-        font-family: 'Space Grotesk', sans-serif;
-        font-size: 1.3rem;
-        font-weight: 600;
-        padding: 16px 22px;
-        border-radius: 20px;
-        border: none;
-        text-align: right;
-        z-index: 100;
-        box-shadow: none;
-        line-height: 1.5;
-        text-shadow: 0 0 15px var(--accent-glow);
+        bottom: 55px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 101;
+        opacity: 0.85;
+        transition: opacity 0.3s;
+        text-align: center;
     }
+    #webstat-box:hover { opacity: 1; }
 
-    #info-box div {
-        margin: 6px 0;
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-        gap: 10px;
-    }
-
-    .status-dot {
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background: var(--accent);
-        animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-        0%, 100% { opacity: 1; transform: scale(1); }
-        50% { opacity: 0.5; transform: scale(1.2); }
-    }
-
-    /* Theme switcher button */
     .theme-switcher {
-        position: fixed;
-        top: 100px;
-        right: 15px;
-        width: 48px;
-        height: 48px;
-        border-radius: 50%;
-        background: var(--card-bg);
-        backdrop-filter: blur(10px);
-        border: 1px solid var(--border);
-        color: var(--accent);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.8rem;
-        cursor: pointer;
-        z-index: 1000;
+        position: fixed; top: 100px; right: 15px;
+        width: 48px; height: 48px; border-radius: 50%;
+        background: var(--card-bg); backdrop-filter: blur(10px);
+        border: 1px solid var(--border); color: var(--accent);
+        display: flex; align-items: center; justify-content: center;
+        font-size: 1.8rem; cursor: pointer; z-index: 1000;
         box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        line-height: 1;
+        transition: transform 0.3s ease, box-shadow 0.3s ease; line-height: 1;
     }
-    .theme-switcher:hover {
-        transform: scale(1.1) rotate(30deg);
-        box-shadow: 0 8px 25px var(--accent-glow);
-    }
+    .theme-switcher:hover { transform: scale(1.1) rotate(30deg); box-shadow: 0 8px 25px var(--accent-glow); }
 
-    /* ==================== Teme suplimentare ==================== */
+    /* ==================== TEME ==================== */
     .theme-default { }
 
     .theme-cyber {
-        --bg-primary: #0b0e14;
-        --bg-secondary: #121827;
-        --fg-primary: #e0f0ff;
-        --fg-secondary: #8ba4bc;
-        --accent: #00ffff;
-        --accent-glow: rgba(0, 255, 255, 0.6);
-        --bg-grid-color: rgba(0, 255, 255, 0.08);
-        --bg-gradient-accent1: rgba(0, 255, 255, 0.15);
-        --bg-gradient-accent2: rgba(255, 0, 255, 0.1);
-        --card-bg: rgba(10, 20, 30, 0.7);
-        --border: rgba(0, 255, 255, 0.3);
-        --chat-header-bg: linear-gradient(135deg, #00ffff, #ff00ff);
-        --chat-user-bg: linear-gradient(135deg, #00ffff, #ff00ff);
-        --chat-consultant-bg: #1a1f2e;
-        --chat-user-text: #000;
-        --chat-consultant-text: #e0f0ff;
-        --chat-input-bg: #1a1f2e;
-        --chat-input-border: #00ffff;
-        --chat-messages-bg: #0b0e14;
-        --chat-login-bg: #1a1f2e;
-        --chat-shadow: rgba(0, 255, 255, 0.4);
+        --bg-primary: #0b0e14; --bg-secondary: #121827; --fg-primary: #e0f0ff; --fg-secondary: #8ba4bc;
+        --accent: #00ffff; --accent-glow: rgba(0, 255, 255, 0.6); --bg-grid-color: rgba(0, 255, 255, 0.08);
+        --bg-gradient-accent1: rgba(0, 255, 255, 0.15); --bg-gradient-accent2: rgba(255, 0, 255, 0.1);
+        --card-bg: rgba(10, 20, 30, 0.7); --border: rgba(0, 255, 255, 0.3);
+        --chat-header-bg: linear-gradient(135deg, #00ffff, #ff00ff); --chat-user-bg: linear-gradient(135deg, #00ffff, #ff00ff);
+        --chat-consultant-bg: #1a1f2e; --chat-user-text: #000; --chat-consultant-text: #e0f0ff;
+        --chat-input-bg: #1a1f2e; --chat-input-border: #00ffff; --chat-messages-bg: #0b0e14;
+        --chat-login-bg: #1a1f2e; --chat-shadow: rgba(0, 255, 255, 0.4);
     }
 
     .theme-gradient {
-        --bg-primary: #f7b42c;
-        --bg-secondary: #fc575e;
-        --fg-primary: #1e1e2f;
-        --fg-secondary: #4a4a6a;
-        --accent: #a8e6cf;
-        --accent-glow: rgba(168, 230, 207, 0.5);
-        --bg-grid-color: rgba(0,0,0,0.05);
-        --bg-gradient-accent1: rgba(247,180,44,0.2);
-        --bg-gradient-accent2: rgba(252,87,94,0.2);
-        --card-bg: rgba(255,255,255,0.2);
-        --border: rgba(0,0,0,0.1);
-        --chat-header-bg: linear-gradient(135deg, #f7b42c, #fc575e);
-        --chat-user-bg: linear-gradient(135deg, #f7b42c, #fc575e);
-        --chat-consultant-bg: #fff3e0;
-        --chat-user-text: #1e1e2f;
-        --chat-consultant-text: #1e1e2f;
-        --chat-input-bg: #fff3e0;
-        --chat-input-border: #fc575e;
-        --chat-messages-bg: #ffe9d6;
-        --chat-login-bg: #fff3e0;
-        --chat-shadow: rgba(247,180,44,0.4);
+        --bg-primary: #f7b42c; --bg-secondary: #fc575e; --fg-primary: #1e1e2f; --fg-secondary: #4a4a6a;
+        --accent: #a8e6cf; --accent-glow: rgba(168, 230, 207, 0.5); --bg-grid-color: rgba(0,0,0,0.05);
+        --bg-gradient-accent1: rgba(247,180,44,0.2); --bg-gradient-accent2: rgba(252,87,94,0.2);
+        --card-bg: rgba(255,255,255,0.2); --border: rgba(0,0,0,0.1);
+        --chat-header-bg: linear-gradient(135deg, #f7b42c, #fc575e); --chat-user-bg: linear-gradient(135deg, #f7b42c, #fc575e);
+        --chat-consultant-bg: #fff3e0; --chat-user-text: #1e1e2f; --chat-consultant-text: #1e1e2f;
+        --chat-input-bg: #fff3e0; --chat-input-border: #fc575e; --chat-messages-bg: #ffe9d6;
+        --chat-login-bg: #fff3e0; --chat-shadow: rgba(247,180,44,0.4);
     }
 
     .theme-corporate {
-        --bg-primary: #eef2f6;
-        --bg-secondary: #dfe7ef;
-        --fg-primary: #1e3a5f;
-        --fg-secondary: #2b4f7c;
-        --accent: #2e7eb0;
-        --accent-glow: rgba(46,126,176,0.3);
-        --bg-grid-color: rgba(0,40,80,0.05);
-        --bg-gradient-accent1: rgba(46,126,176,0.1);
-        --bg-gradient-accent2: rgba(0,80,130,0.1);
-        --card-bg: rgba(255,255,255,0.7);
-        --border: rgba(46,126,176,0.2);
-        --chat-header-bg: linear-gradient(135deg, #1e3a5f, #2e7eb0);
-        --chat-user-bg: linear-gradient(135deg, #1e3a5f, #2e7eb0);
-        --chat-consultant-bg: #ffffff;
-        --chat-user-text: #ffffff;
-        --chat-consultant-text: #1e3a5f;
-        --chat-input-bg: #ffffff;
-        --chat-input-border: #2e7eb0;
-        --chat-messages-bg: #f0f4fa;
-        --chat-login-bg: #ffffff;
-        --chat-shadow: rgba(46,126,176,0.3);
+        --bg-primary: #eef2f6; --bg-secondary: #dfe7ef; --fg-primary: #1e3a5f; --fg-secondary: #2b4f7c;
+        --accent: #2e7eb0; --accent-glow: rgba(46,126,176,0.3); --bg-grid-color: rgba(0,40,80,0.05);
+        --bg-gradient-accent1: rgba(46,126,176,0.1); --bg-gradient-accent2: rgba(0,80,130,0.1);
+        --card-bg: rgba(255,255,255,0.7); --border: rgba(46,126,176,0.2);
+        --chat-header-bg: linear-gradient(135deg, #1e3a5f, #2e7eb0); --chat-user-bg: linear-gradient(135deg, #1e3a5f, #2e7eb0);
+        --chat-consultant-bg: #ffffff; --chat-user-text: #ffffff; --chat-consultant-text: #1e3a5f;
+        --chat-input-bg: #ffffff; --chat-input-border: #2e7eb0; --chat-messages-bg: #f0f4fa;
+        --chat-login-bg: #ffffff; --chat-shadow: rgba(46,126,176,0.3);
     }
 
     .theme-futuristic {
-        --bg-primary: #030c1a;
-        --bg-secondary: #102a43;
-        --fg-primary: #e2f0ff;
-        --fg-secondary: #9bb8d4;
-        --accent: #64d2ff;
-        --accent-glow: rgba(100,210,255,0.6);
-        --bg-grid-color: rgba(100,210,255,0.1);
-        --bg-gradient-accent1: rgba(100,210,255,0.15);
-        --bg-gradient-accent2: rgba(200,130,255,0.1);
-        --card-bg: rgba(16,42,67,0.7);
-        --border: rgba(100,210,255,0.3);
-        --chat-header-bg: linear-gradient(135deg, #64d2ff, #c882ff);
-        --chat-user-bg: linear-gradient(135deg, #64d2ff, #c882ff);
-        --chat-consultant-bg: #102a43;
-        --chat-user-text: #030c1a;
-        --chat-consultant-text: #e2f0ff;
-        --chat-input-bg: #102a43;
-        --chat-input-border: #64d2ff;
-        --chat-messages-bg: #0b1a2e;
-        --chat-login-bg: #102a43;
-        --chat-shadow: rgba(100,210,255,0.4);
+        --bg-primary: #030c1a; --bg-secondary: #102a43; --fg-primary: #e2f0ff; --fg-secondary: #9bb8d4;
+        --accent: #64d2ff; --accent-glow: rgba(100,210,255,0.6); --bg-grid-color: rgba(100,210,255,0.1);
+        --bg-gradient-accent1: rgba(100,210,255,0.15); --bg-gradient-accent2: rgba(200,130,255,0.1);
+        --card-bg: rgba(16,42,67,0.7); --border: rgba(100,210,255,0.3);
+        --chat-header-bg: linear-gradient(135deg, #64d2ff, #c882ff); --chat-user-bg: linear-gradient(135deg, #64d2ff, #c882ff);
+        --chat-consultant-bg: #102a43; --chat-user-text: #030c1a; --chat-consultant-text: #e2f0ff;
+        --chat-input-bg: #102a43; --chat-input-border: #64d2ff; --chat-messages-bg: #0b1a2e;
+        --chat-login-bg: #102a43; --chat-shadow: rgba(100,210,255,0.4);
     }
 
     .theme-cosmic-neon {
-        --bg-primary: #0b0710;
-        --bg-secondary: #1a1035;
-        --fg-primary: #eaf6ff;
-        --fg-secondary: #a0b0c0;
-        --accent: #00ffff;
-        --accent-glow: rgba(255, 0, 255, 0.5);
-        --bg-grid-color: rgba(0, 255, 255, 0.1);
-        --bg-gradient-accent1: rgba(0, 255, 255, 0.2);
-        --bg-gradient-accent2: rgba(255, 0, 255, 0.2);
-        --card-bg: rgba(20, 10, 40, 0.7);
-        --border: rgba(0, 255, 255, 0.3);
-        --chat-header-bg: linear-gradient(135deg, #00ffff, #ff00ff);
-        --chat-user-bg: linear-gradient(135deg, #00ffff, #ff00ff);
-        --chat-consultant-bg: #1a1035;
-        --chat-user-text: #0b0710;
-        --chat-consultant-text: #eaf6ff;
-        --chat-input-bg: #1a1035;
-        --chat-input-border: #00ffff;
-        --chat-messages-bg: #120b1f;
-        --chat-login-bg: #1a1035;
-        --chat-shadow: rgba(255,0,255,0.4);
+        --bg-primary: #0b0710; --bg-secondary: #1a1035; --fg-primary: #eaf6ff; --fg-secondary: #a0b0c0;
+        --accent: #00ffff; --accent-glow: rgba(255, 0, 255, 0.5); --bg-grid-color: rgba(0, 255, 255, 0.1);
+        --bg-gradient-accent1: rgba(0, 255, 255, 0.2); --bg-gradient-accent2: rgba(255, 0, 255, 0.2);
+        --card-bg: rgba(20, 10, 40, 0.7); --border: rgba(0, 255, 255, 0.3);
+        --chat-header-bg: linear-gradient(135deg, #00ffff, #ff00ff); --chat-user-bg: linear-gradient(135deg, #00ffff, #ff00ff);
+        --chat-consultant-bg: #1a1035; --chat-user-text: #0b0710; --chat-consultant-text: #eaf6ff;
+        --chat-input-bg: #1a1035; --chat-input-border: #00ffff; --chat-messages-bg: #120b1f;
+        --chat-login-bg: #1a1035; --chat-shadow: rgba(255,0,255,0.4);
     }
 
     .theme-eco-minimal {
-        --bg-primary: #e8f1e0;
-        --bg-secondary: #d4e0c0;
-        --fg-primary: #2f2f2f;
-        --fg-secondary: #5a5a5a;
-        --accent: #2e7d32;
-        --accent-glow: rgba(46, 125, 50, 0.3);
-        --bg-grid-color: rgba(0,0,0,0.03);
-        --bg-gradient-accent1: rgba(46,125,50,0.1);
-        --bg-gradient-accent2: rgba(200,180,140,0.1);
-        --card-bg: rgba(255,255,240,0.7);
-        --border: rgba(46,125,50,0.2);
-        --chat-header-bg: linear-gradient(135deg, #2e7d32, #8bc34a);
-        --chat-user-bg: linear-gradient(135deg, #2e7d32, #8bc34a);
-        --chat-consultant-bg: #f5f7f0;
-        --chat-user-text: #ffffff;
-        --chat-consultant-text: #2f2f2f;
-        --chat-input-bg: #f5f7f0;
-        --chat-input-border: #2e7d32;
-        --chat-messages-bg: #f0f5ea;
-        --chat-login-bg: #f5f7f0;
-        --chat-shadow: rgba(46,125,50,0.2);
+        --bg-primary: #e8f1e0; --bg-secondary: #d4e0c0; --fg-primary: #2f2f2f; --fg-secondary: #5a5a5a;
+        --accent: #2e7d32; --accent-glow: rgba(46, 125, 50, 0.3); --bg-grid-color: rgba(0,0,0,0.03);
+        --bg-gradient-accent1: rgba(46,125,50,0.1); --bg-gradient-accent2: rgba(200,180,140,0.1);
+        --card-bg: rgba(255,255,240,0.7); --border: rgba(46,125,50,0.2);
+        --chat-header-bg: linear-gradient(135deg, #2e7d32, #8bc34a); --chat-user-bg: linear-gradient(135deg, #2e7d32, #8bc34a);
+        --chat-consultant-bg: #f5f7f0; --chat-user-text: #ffffff; --chat-consultant-text: #2f2f2f;
+        --chat-input-bg: #f5f7f0; --chat-input-border: #2e7d32; --chat-messages-bg: #f0f5ea;
+        --chat-login-bg: #f5f7f0; --chat-shadow: rgba(46,125,50,0.2);
     }
 
     .theme-dark-glass {
-        --bg-primary: #0a0f1a;
-        --bg-secondary: #141c2c;
-        --fg-primary: rgba(255,255,255,0.9);
-        --fg-secondary: rgba(200,220,240,0.8);
-        --accent: #66b0ff;
-        --accent-glow: rgba(100,180,255,0.5);
-        --bg-grid-color: rgba(100,180,255,0.05);
-        --bg-gradient-accent1: rgba(100,180,255,0.1);
-        --bg-gradient-accent2: rgba(50,100,200,0.1);
-        --card-bg: rgba(30,40,60,0.4);
-        --border: rgba(100,180,255,0.2);
-        --chat-header-bg: rgba(30,40,60,0.7);
-        --chat-user-bg: rgba(100,180,255,0.5);
-        --chat-consultant-bg: rgba(255,255,255,0.1);
-        --chat-user-text: #ffffff;
-        --chat-consultant-text: #ffffff;
-        --chat-input-bg: rgba(30,40,60,0.5);
-        --chat-input-border: #66b0ff;
-        --chat-messages-bg: rgba(20,30,45,0.8);
-        --chat-login-bg: rgba(30,40,60,0.5);
-        --chat-shadow: rgba(100,180,255,0.3);
+        --bg-primary: #0a0f1a; --bg-secondary: #141c2c; --fg-primary: rgba(255,255,255,0.9); --fg-secondary: rgba(200,220,240,0.8);
+        --accent: #66b0ff; --accent-glow: rgba(100,180,255,0.5); --bg-grid-color: rgba(100,180,255,0.05);
+        --bg-gradient-accent1: rgba(100,180,255,0.1); --bg-gradient-accent2: rgba(50,100,200,0.1);
+        --card-bg: rgba(30,40,60,0.4); --border: rgba(100,180,255,0.2);
+        --chat-header-bg: rgba(30,40,60,0.7); --chat-user-bg: rgba(100,180,255,0.5);
+        --chat-consultant-bg: rgba(255,255,255,0.1); --chat-user-text: #ffffff; --chat-consultant-text: #ffffff;
+        --chat-input-bg: rgba(30,40,60,0.5); --chat-input-border: #66b0ff; --chat-messages-bg: rgba(20,30,45,0.8);
+        --chat-login-bg: rgba(30,40,60,0.5); --chat-shadow: rgba(100,180,255,0.3);
     }
 
     .theme-sunset-gradient {
-        --bg-primary: #ff7e5f;
-        --bg-secondary: #c06bc0;
-        --fg-primary: #ffffff;
-        --fg-secondary: #f0e0e0;
-        --accent: #ffd166;
-        --accent-glow: rgba(255,209,102,0.5);
-        --bg-grid-color: rgba(255,255,255,0.1);
-        --bg-gradient-accent1: rgba(255,126,95,0.5);
-        --bg-gradient-accent2: rgba(204,51,204,0.5);
-        --card-bg: rgba(0,0,0,0.2);
-        --border: rgba(255,209,102,0.3);
-        --chat-header-bg: linear-gradient(135deg, #ff7e5f, #c06bc0);
-        --chat-user-bg: linear-gradient(135deg, #ff7e5f, #c06bc0);
-        --chat-consultant-bg: rgba(255,255,255,0.9);
-        --chat-user-text: #ffffff;
-        --chat-consultant-text: #4a1e4a;
-        --chat-input-bg: #fff0e0;
-        --chat-input-border: #ff7e5f;
-        --chat-messages-bg: #ffe5d5;
-        --chat-login-bg: #fff0e0;
-        --chat-shadow: rgba(255,126,95,0.4);
+        --bg-primary: #ff7e5f; --bg-secondary: #c06bc0; --fg-primary: #ffffff; --fg-secondary: #f0e0e0;
+        --accent: #ffd166; --accent-glow: rgba(255,209,102,0.5); --bg-grid-color: rgba(255,255,255,0.1);
+        --bg-gradient-accent1: rgba(255,126,95,0.5); --bg-gradient-accent2: rgba(204,51,204,0.5);
+        --card-bg: rgba(0,0,0,0.2); --border: rgba(255,209,102,0.3);
+        --chat-header-bg: linear-gradient(135deg, #ff7e5f, #c06bc0); --chat-user-bg: linear-gradient(135deg, #ff7e5f, #c06bc0);
+        --chat-consultant-bg: rgba(255,255,255,0.9); --chat-user-text: #ffffff; --chat-consultant-text: #4a1e4a;
+        --chat-input-bg: #fff0e0; --chat-input-border: #ff7e5f; --chat-messages-bg: #ffe5d5;
+        --chat-login-bg: #fff0e0; --chat-shadow: rgba(255,126,95,0.4);
     }
 
     .theme-ice-tech {
-        --bg-primary: #d4eaff;
-        --bg-secondary: #aaccff;
-        --fg-primary: #1a3b5d;
-        --fg-secondary: #2b4f7a;
-        --accent: #00b8ff;
-        --accent-glow: rgba(0,184,255,0.4);
-        --bg-grid-color: rgba(0,184,255,0.2);
-        --bg-gradient-accent1: rgba(0,184,255,0.2);
-        --bg-gradient-accent2: rgba(0,100,200,0.2);
-        --card-bg: rgba(255,255,255,0.5);
-        --border: rgba(0,184,255,0.3);
-        --chat-header-bg: linear-gradient(135deg, #00b8ff, #0066cc);
-        --chat-user-bg: linear-gradient(135deg, #00b8ff, #0066cc);
-        --chat-consultant-bg: #ffffff;
-        --chat-user-text: #ffffff;
-        --chat-consultant-text: #1a3b5d;
-        --chat-input-bg: #ffffff;
-        --chat-input-border: #00b8ff;
-        --chat-messages-bg: #e5f2ff;
-        --chat-login-bg: #ffffff;
-        --chat-shadow: rgba(0,184,255,0.3);
+        --bg-primary: #d4eaff; --bg-secondary: #aaccff; --fg-primary: #1a3b5d; --fg-secondary: #2b4f7a;
+        --accent: #00b8ff; --accent-glow: rgba(0,184,255,0.4); --bg-grid-color: rgba(0,184,255,0.2);
+        --bg-gradient-accent1: rgba(0,184,255,0.2); --bg-gradient-accent2: rgba(0,100,200,0.2);
+        --card-bg: rgba(255,255,255,0.5); --border: rgba(0,184,255,0.3);
+        --chat-header-bg: linear-gradient(135deg, #00b8ff, #0066cc); --chat-user-bg: linear-gradient(135deg, #00b8ff, #0066cc);
+        --chat-consultant-bg: #ffffff; --chat-user-text: #ffffff; --chat-consultant-text: #1a3b5d;
+        --chat-input-bg: #ffffff; --chat-input-border: #00b8ff; --chat-messages-bg: #e5f2ff;
+        --chat-login-bg: #ffffff; --chat-shadow: rgba(0,184,255,0.3);
     }
 
     .theme-ocean-breeze {
-        --bg-primary: #1b4d6e;
-        --bg-secondary: #3aa0b0;
-        --fg-primary: #e0f2fe;
-        --fg-secondary: #aad0f5;
-        --accent: #7fffd4;
-        --accent-glow: rgba(127,255,212,0.5);
-        --bg-grid-color: rgba(127,255,212,0.1);
-        --bg-gradient-accent1: rgba(27,77,110,0.6);
-        --bg-gradient-accent2: rgba(58,160,176,0.6);
-        --card-bg: rgba(0,40,60,0.4);
-        --border: rgba(127,255,212,0.3);
-        --chat-header-bg: linear-gradient(135deg, #1b4d6e, #3aa0b0);
-        --chat-user-bg: linear-gradient(135deg, #1b4d6e, #3aa0b0);
-        --chat-consultant-bg: #e0f2fe;
-        --chat-user-text: #ffffff;
-        --chat-consultant-text: #1b4d6e;
-        --chat-input-bg: #e0f2fe;
-        --chat-input-border: #7fffd4;
-        --chat-messages-bg: #c4e6f5;
-        --chat-login-bg: #e0f2fe;
-        --chat-shadow: rgba(127,255,212,0.3);
+        --bg-primary: #1b4d6e; --bg-secondary: #3aa0b0; --fg-primary: #e0f2fe; --fg-secondary: #aad0f5;
+        --accent: #7fffd4; --accent-glow: rgba(127,255,212,0.5); --bg-grid-color: rgba(127,255,212,0.1);
+        --bg-gradient-accent1: rgba(27,77,110,0.6); --bg-gradient-accent2: rgba(58,160,176,0.6);
+        --card-bg: rgba(0,40,60,0.4); --border: rgba(127,255,212,0.3);
+        --chat-header-bg: linear-gradient(135deg, #1b4d6e, #3aa0b0); --chat-user-bg: linear-gradient(135deg, #1b4d6e, #3aa0b0);
+        --chat-consultant-bg: #e0f2fe; --chat-user-text: #ffffff; --chat-consultant-text: #1b4d6e;
+        --chat-input-bg: #e0f2fe; --chat-input-border: #7fffd4; --chat-messages-bg: #c4e6f5;
+        --chat-login-bg: #e0f2fe; --chat-shadow: rgba(127,255,212,0.3);
     }
 
     .theme-ai-neural {
-        --bg-primary: #120c1a;
-        --bg-secondary: #1f1a2e;
-        --fg-primary: #e2e9ff;
-        --fg-secondary: #b0c2e0;
-        --accent: #c77dff;
-        --accent-glow: rgba(199,125,255,0.5);
-        --bg-grid-color: rgba(199,125,255,0.1);
-        --bg-gradient-accent1: rgba(199,125,255,0.15);
-        --bg-gradient-accent2: rgba(0,255,255,0.1);
-        --card-bg: rgba(30,20,50,0.6);
-        --border: rgba(199,125,255,0.3);
-        --chat-header-bg: linear-gradient(135deg, #c77dff, #9b4dff);
-        --chat-user-bg: linear-gradient(135deg, #c77dff, #9b4dff);
-        --chat-consultant-bg: #1f1a2e;
-        --chat-user-text: #ffffff;
-        --chat-consultant-text: #e2e9ff;
-        --chat-input-bg: #1f1a2e;
-        --chat-input-border: #c77dff;
-        --chat-messages-bg: #191425;
-        --chat-login-bg: #1f1a2e;
-        --chat-shadow: rgba(199,125,255,0.4);
+        --bg-primary: #120c1a; --bg-secondary: #1f1a2e; --fg-primary: #e2e9ff; --fg-secondary: #b0c2e0;
+        --accent: #c77dff; --accent-glow: rgba(199,125,255,0.5); --bg-grid-color: rgba(199,125,255,0.1);
+        --bg-gradient-accent1: rgba(199,125,255,0.15); --bg-gradient-accent2: rgba(0,255,255,0.1);
+        --card-bg: rgba(30,20,50,0.6); --border: rgba(199,125,255,0.3);
+        --chat-header-bg: linear-gradient(135deg, #c77dff, #9b4dff); --chat-user-bg: linear-gradient(135deg, #c77dff, #9b4dff);
+        --chat-consultant-bg: #1f1a2e; --chat-user-text: #ffffff; --chat-consultant-text: #e2e9ff;
+        --chat-input-bg: #1f1a2e; --chat-input-border: #c77dff; --chat-messages-bg: #191425;
+        --chat-login-bg: #1f1a2e; --chat-shadow: rgba(199,125,255,0.4);
     }
 
     .theme-soft-light {
-        --bg-primary: #fdfcf9;
-        --bg-secondary: #f5efe6;
-        --fg-primary: #333333;
-        --fg-secondary: #5a5a5a;
-        --accent: #d4af37;
-        --accent-glow: rgba(212,175,55,0.3);
-        --bg-grid-color: rgba(0,0,0,0.02);
-        --bg-gradient-accent1: rgba(212,175,55,0.05);
-        --bg-gradient-accent2: rgba(200,180,150,0.05);
-        --card-bg: rgba(255,255,255,0.8);
-        --border: rgba(212,175,55,0.2);
-        --chat-header-bg: linear-gradient(135deg, #d4af37, #f5efe6);
-        --chat-user-bg: linear-gradient(135deg, #d4af37, #c0a050);
-        --chat-consultant-bg: #ffffff;
-        --chat-user-text: #ffffff;
-        --chat-consultant-text: #333333;
-        --chat-input-bg: #ffffff;
-        --chat-input-border: #d4af37;
-        --chat-messages-bg: #faf9f7;
-        --chat-login-bg: #ffffff;
-        --chat-shadow: rgba(212,175,55,0.2);
+        --bg-primary: #fdfcf9; --bg-secondary: #f5efe6; --fg-primary: #333333; --fg-secondary: #5a5a5a;
+        --accent: #d4af37; --accent-glow: rgba(212,175,55,0.3); --bg-grid-color: rgba(0,0,0,0.02);
+        --bg-gradient-accent1: rgba(212,175,55,0.05); --bg-gradient-accent2: rgba(200,180,150,0.05);
+        --card-bg: rgba(255,255,255,0.8); --border: rgba(212,175,55,0.2);
+        --chat-header-bg: linear-gradient(135deg, #d4af37, #f5efe6); --chat-user-bg: linear-gradient(135deg, #d4af37, #c0a050);
+        --chat-consultant-bg: #ffffff; --chat-user-text: #ffffff; --chat-consultant-text: #333333;
+        --chat-input-bg: #ffffff; --chat-input-border: #d4af37; --chat-messages-bg: #faf9f7;
+        --chat-login-bg: #ffffff; --chat-shadow: rgba(212,175,55,0.2);
     }
 
-    /* Chat styles (folosesc variabilele) */
+    .theme-cherry-blossom {
+        --bg-primary: #fff0f5; --bg-secondary: #ffe4ec; --fg-primary: #4a1a2e; --fg-secondary: #7a3a5a;
+        --accent: #e91e8c; --accent-glow: rgba(233,30,140,0.3); --bg-grid-color: rgba(233,30,140,0.05);
+        --bg-gradient-accent1: rgba(233,30,140,0.1); --bg-gradient-accent2: rgba(255,150,180,0.1);
+        --card-bg: rgba(255,255,255,0.75); --border: rgba(233,30,140,0.2);
+        --chat-header-bg: linear-gradient(135deg, #e91e8c, #ff6eb4); --chat-user-bg: linear-gradient(135deg, #e91e8c, #ff6eb4);
+        --chat-consultant-bg: #ffffff; --chat-user-text: #ffffff; --chat-consultant-text: #4a1a2e;
+        --chat-input-bg: #fff5f8; --chat-input-border: #e91e8c; --chat-messages-bg: #fff0f5;
+        --chat-login-bg: #fff5f8; --chat-shadow: rgba(233,30,140,0.3);
+    }
+
+    .theme-midnight-purple {
+        --bg-primary: #0d0b1a; --bg-secondary: #1a1535; --fg-primary: #f0eaff; --fg-secondary: #b8a8d8;
+        --accent: #9d4edd; --accent-glow: rgba(157,78,221,0.5); --bg-grid-color: rgba(157,78,221,0.08);
+        --bg-gradient-accent1: rgba(157,78,221,0.15); --bg-gradient-accent2: rgba(200,80,255,0.1);
+        --card-bg: rgba(26,21,53,0.8); --border: rgba(157,78,221,0.3);
+        --chat-header-bg: linear-gradient(135deg, #9d4edd, #5a189a); --chat-user-bg: linear-gradient(135deg, #9d4edd, #5a189a);
+        --chat-consultant-bg: #1a1535; --chat-user-text: #ffffff; --chat-consultant-text: #f0eaff;
+        --chat-input-bg: #1a1535; --chat-input-border: #9d4edd; --chat-messages-bg: #130f28;
+        --chat-login-bg: #1a1535; --chat-shadow: rgba(157,78,221,0.4);
+    }
+
+    .theme-forest-dark {
+        --bg-primary: #0a1a0e; --bg-secondary: #122a18; --fg-primary: #d8f0dc; --fg-secondary: #88bb90;
+        --accent: #4caf50; --accent-glow: rgba(76,175,80,0.5); --bg-grid-color: rgba(76,175,80,0.06);
+        --bg-gradient-accent1: rgba(76,175,80,0.12); --bg-gradient-accent2: rgba(30,100,40,0.15);
+        --card-bg: rgba(18,42,24,0.75); --border: rgba(76,175,80,0.25);
+        --chat-header-bg: linear-gradient(135deg, #2e7d32, #4caf50); --chat-user-bg: linear-gradient(135deg, #2e7d32, #4caf50);
+        --chat-consultant-bg: #122a18; --chat-user-text: #ffffff; --chat-consultant-text: #d8f0dc;
+        --chat-input-bg: #0f2014; --chat-input-border: #4caf50; --chat-messages-bg: #0c1e10;
+        --chat-login-bg: #122a18; --chat-shadow: rgba(76,175,80,0.3);
+    }
+
+    .theme-golden-hour {
+        --bg-primary: #1a1000; --bg-secondary: #2e1f00; --fg-primary: #fff8e1; --fg-secondary: #ffd54f;
+        --accent: #ffc107; --accent-glow: rgba(255,193,7,0.5); --bg-grid-color: rgba(255,193,7,0.06);
+        --bg-gradient-accent1: rgba(255,193,7,0.12); --bg-gradient-accent2: rgba(255,87,34,0.1);
+        --card-bg: rgba(46,31,0,0.75); --border: rgba(255,193,7,0.3);
+        --chat-header-bg: linear-gradient(135deg, #f57c00, #ffc107); --chat-user-bg: linear-gradient(135deg, #f57c00, #ffc107);
+        --chat-consultant-bg: #2e1f00; --chat-user-text: #1a1000; --chat-consultant-text: #fff8e1;
+        --chat-input-bg: #2e1f00; --chat-input-border: #ffc107; --chat-messages-bg: #221600;
+        --chat-login-bg: #2e1f00; --chat-shadow: rgba(255,193,7,0.4);
+    }
+
+    .theme-nordic-frost {
+        --bg-primary: #f0f4f8; --bg-secondary: #dce8f0; --fg-primary: #1c2e40; --fg-secondary: #3a556e;
+        --accent: #4a90d9; --accent-glow: rgba(74,144,217,0.3); --bg-grid-color: rgba(74,144,217,0.05);
+        --bg-gradient-accent1: rgba(74,144,217,0.08); --bg-gradient-accent2: rgba(100,180,220,0.08);
+        --card-bg: rgba(255,255,255,0.8); --border: rgba(74,144,217,0.2);
+        --chat-header-bg: linear-gradient(135deg, #1c2e40, #4a90d9); --chat-user-bg: linear-gradient(135deg, #1c2e40, #4a90d9);
+        --chat-consultant-bg: #ffffff; --chat-user-text: #ffffff; --chat-consultant-text: #1c2e40;
+        --chat-input-bg: #ffffff; --chat-input-border: #4a90d9; --chat-messages-bg: #f5f8fc;
+        --chat-login-bg: #ffffff; --chat-shadow: rgba(74,144,217,0.25);
+    }
+
+    /* ===== TEME NOI ===== */
+    /* Temă nouă: Ember Dark (roșu-portocaliu pe negru) */
+    .theme-ember-dark {
+        --bg-primary: #120800; --bg-secondary: #200e00; --fg-primary: #fff4ee; --fg-secondary: #ffb07a;
+        --accent: #ff5a1f; --accent-glow: rgba(255,90,31,0.5); --bg-grid-color: rgba(255,90,31,0.06);
+        --bg-gradient-accent1: rgba(255,90,31,0.15); --bg-gradient-accent2: rgba(255,180,50,0.08);
+        --card-bg: rgba(32,14,0,0.8); --border: rgba(255,90,31,0.3);
+        --chat-header-bg: linear-gradient(135deg, #ff5a1f, #ff9f43); --chat-user-bg: linear-gradient(135deg, #ff5a1f, #ff9f43);
+        --chat-consultant-bg: #200e00; --chat-user-text: #ffffff; --chat-consultant-text: #fff4ee;
+        --chat-input-bg: #1a0900; --chat-input-border: #ff5a1f; --chat-messages-bg: #150b00;
+        --chat-login-bg: #200e00; --chat-shadow: rgba(255,90,31,0.4);
+    }
+
+    /* Temă nouă: Aqua Slate (albastru-gri elegant) */
+    .theme-aqua-slate {
+        --bg-primary: #1e2a38; --bg-secondary: #243344; --fg-primary: #d8eaf5; --fg-secondary: #8aadc5;
+        --accent: #38bdf8; --accent-glow: rgba(56,189,248,0.4); --bg-grid-color: rgba(56,189,248,0.05);
+        --bg-gradient-accent1: rgba(56,189,248,0.12); --bg-gradient-accent2: rgba(30,90,160,0.12);
+        --card-bg: rgba(36,51,68,0.85); --border: rgba(56,189,248,0.2);
+        --chat-header-bg: linear-gradient(135deg, #0369a1, #38bdf8); --chat-user-bg: linear-gradient(135deg, #0369a1, #38bdf8);
+        --chat-consultant-bg: #243344; --chat-user-text: #ffffff; --chat-consultant-text: #d8eaf5;
+        --chat-input-bg: #1e2a38; --chat-input-border: #38bdf8; --chat-messages-bg: #19232f;
+        --chat-login-bg: #243344; --chat-shadow: rgba(56,189,248,0.3);
+    }
+
+    /* Temă nouă: Rose Quartz (roz pastel minimalist) */
+    .theme-rose-quartz {
+        --bg-primary: #fff5f7; --bg-secondary: #ffe8ed; --fg-primary: #3d1a24; --fg-secondary: #8c4a5e;
+        --accent: #e05c78; --accent-glow: rgba(224,92,120,0.3); --bg-grid-color: rgba(224,92,120,0.04);
+        --bg-gradient-accent1: rgba(224,92,120,0.08); --bg-gradient-accent2: rgba(255,180,200,0.1);
+        --card-bg: rgba(255,255,255,0.85); --border: rgba(224,92,120,0.18);
+        --chat-header-bg: linear-gradient(135deg, #e05c78, #f9a8bb); --chat-user-bg: linear-gradient(135deg, #e05c78, #f9a8bb);
+        --chat-consultant-bg: #ffffff; --chat-user-text: #ffffff; --chat-consultant-text: #3d1a24;
+        --chat-input-bg: #fff5f7; --chat-input-border: #e05c78; --chat-messages-bg: #fff0f3;
+        --chat-login-bg: #ffffff; --chat-shadow: rgba(224,92,120,0.25);
+    }
+
+    /* ==================== CHAT STYLES ==================== */
     .chat-container {
-        position: fixed;
-        bottom: 25px;
-        right: 25px;
-        width: 100%;
-        max-width: 450px;
-        height: 80vh;
-        background: var(--chat-consultant-bg);
-        border-radius: 30px;
-        box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-        animation: slideUp 0.5s ease;
+        position: fixed; bottom: 25px; right: 25px;
+        width: 100%; max-width: 460px; height: 82vh;
+        background: var(--chat-consultant-bg); border-radius: 24px;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.3); overflow: hidden;
+        display: flex; flex-direction: column;
         z-index: 9999;
         transform: translateY(calc(100% + 100px));
         transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        border: 1px solid var(--chat-input-border);
     }
     .chat-container.open { transform: translateY(0); }
-    @keyframes slideUp { from { opacity:0; transform:translateY(50px); } to { opacity:1; transform:translateY(0); } }
-    
+
     .chat-header {
-        background: var(--chat-header-bg);
-        color: white;
-        padding: 20px;
-        text-align: center;
-        position: relative;
-        z-index: 10;
+        background: var(--chat-header-bg); color: white;
+        padding: 16px 20px; position: relative; z-index: 10;
+        display: flex; align-items: center; gap: 12px;
     }
-    .chat-header h2 {
-        font-size:1.5rem;
-        margin-bottom:5px;
-        font-family:'Space Grotesk',sans-serif;
+    .chat-header-avatar {
+        width: 44px; height: 44px; border-radius: 50%;
+        background: rgba(255,255,255,0.25);
+        display: flex; align-items: center; justify-content: center;
+        font-size: 1.4rem; flex-shrink: 0;
+        border: 2px solid rgba(255,255,255,0.5);
     }
-    .chat-header p { font-size:0.9rem; opacity:0.9; }
-    
+    .chat-header-info { flex: 1; text-align: left; }
+    .chat-header-info h2 { font-size: 1.05rem; margin: 0; font-family: 'Outfit', sans-serif; font-weight: 700; }
+    .chat-header-info p { font-size: 0.8rem; opacity: 0.85; margin: 0; }
+    .chat-header-online { display: flex; align-items: center; gap: 5px; margin-top: 2px; }
+    .chat-header-online-dot { width: 7px; height: 7px; border-radius: 50%; background: #4ade80; }
     .chat-close-btn {
-        position: absolute;
-        top: 15px;
-        right: 15px;
-        width: 36px;
-        height: 36px;
-        border-radius: 50%;
-        background: rgba(255,255,255,0.2);
-        border: none;
-        color: white;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.2rem;
-        transition: all 0.3s ease;
-        z-index: 20;
+        width: 34px; height: 34px; border-radius: 50%;
+        background: rgba(255,255,255,0.2); border: none; color: white;
+        cursor: pointer; display: flex; align-items: center; justify-content: center;
+        font-size: 1rem; transition: all 0.3s ease; flex-shrink: 0;
     }
-    .chat-close-btn:hover { background:rgba(255,255,255,0.3); transform:scale(1.1); }
-    
+    .chat-close-btn:hover { background: rgba(255,255,255,0.35); transform: scale(1.1); }
+
+    /* Login section modernizat */
     .login-section {
-        padding:20px;
+        padding: 24px 20px;
         background: var(--chat-login-bg);
-        border-bottom:1px solid var(--chat-input-border);
+        border-bottom: 1px solid var(--chat-input-border);
+        flex: 1; display: flex; flex-direction: column; justify-content: center;
+    }
+    .login-section .login-title {
+        font-family: 'Outfit', sans-serif; font-size: 1.15rem; font-weight: 700;
+        color: var(--fg-primary); margin-bottom: 6px;
+    }
+    .login-section .login-subtitle { font-size: 0.85rem; color: var(--fg-secondary); margin-bottom: 18px; }
+    .input-group { position: relative; margin-bottom: 12px; }
+    .input-group .input-icon {
+        position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+        font-size: 1rem; pointer-events: none; opacity: 0.6;
     }
     .login-section input {
-        width:100%;
-        padding:12px 15px;
-        margin-bottom:10px;
-        border:2px solid var(--chat-input-border);
-        border-radius:12px;
-        font-size:1rem;
-        transition:all 0.3s;
-        background: var(--chat-input-bg);
-        color: var(--fg-primary);
+        width: 100%; padding: 13px 15px 13px 40px;
+        border: 2px solid var(--chat-input-border);
+        border-radius: 14px; font-size: 0.95rem;
+        transition: all 0.3s;
+        background: var(--chat-input-bg); color: var(--fg-primary);
     }
     .login-section input:focus {
-        outline:none;
-        border-color: var(--accent);
-        box-shadow:0 0 0 3px var(--accent-glow);
+        outline: none; border-color: var(--accent);
+        box-shadow: 0 0 0 3px var(--accent-glow);
     }
     .login-section button {
-        width:100%;
-        padding:12px;
-        background: var(--chat-header-bg);
-        color: white;
-        border:none;
-        border-radius:12px;
-        font-size:1rem;
-        font-weight:600;
-        cursor:pointer;
-        transition:transform 0.3s, box-shadow 0.3s;
+        width: 100%; padding: 13px;
+        background: var(--chat-header-bg); color: white;
+        border: none; border-radius: 14px; font-size: 0.98rem;
+        font-weight: 600; cursor: pointer; margin-top: 4px;
+        transition: transform 0.3s, box-shadow 0.3s;
+        font-family: 'Outfit', sans-serif; letter-spacing: 0.3px;
     }
-    .login-section button:hover {
-        transform:translateY(-2px);
-        box-shadow:0 5px 15px var(--chat-shadow);
-    }
-    
+    .login-section button:hover { transform: translateY(-2px); box-shadow: 0 5px 15px var(--chat-shadow); }
+    .login-section button:active { transform: translateY(0); }
+
     .messages-area {
-        flex:1;
-        overflow-y:auto;
-        padding:20px;
+        flex: 1; overflow-y: auto; padding: 16px;
         background: var(--chat-messages-bg);
-        display:flex;
-        flex-direction:column;
-        gap:12px;
+        display: flex; flex-direction: column; gap: 8px;
     }
+    .messages-area::-webkit-scrollbar { width: 4px; }
+    .messages-area::-webkit-scrollbar-track { background: rgba(0,0,0,0.05); border-radius: 3px; }
+    .messages-area::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+
+    /* Bubble WhatsApp-style */
     .message {
-        max-width:80%;
-        padding:12px 16px;
-        border-radius:20px;
-        animation:fadeIn 0.3s ease;
-        word-wrap:break-word;
+        max-width: 78%; padding: 10px 14px;
+        border-radius: 18px; animation: fadeIn 0.3s ease; word-wrap: break-word;
+        position: relative; font-size: 0.93rem; line-height: 1.5;
     }
-    @keyframes fadeIn { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
     .message.user {
-        background: var(--chat-user-bg);
-        color: var(--chat-user-text);
-        align-self:flex-end;
-        border-bottom-right-radius:4px;
+        background: var(--chat-user-bg); color: var(--chat-user-text);
+        align-self: flex-end; border-bottom-right-radius: 5px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.12);
     }
     .message.consultant {
-        background: var(--chat-consultant-bg);
-        color: var(--chat-consultant-text);
-        align-self:flex-start;
-        border-bottom-left-radius:4px;
-        box-shadow:0 2px 5px rgba(0,0,0,0.1);
+        background: var(--chat-consultant-bg); color: var(--chat-consultant-text);
+        align-self: flex-start; border-bottom-left-radius: 5px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
-    .message-time { font-size:0.7rem; opacity:0.7; margin-top:4px; }
-    
+    .message-sender { font-size: 0.72rem; font-weight: 700; opacity: 0.75; margin-bottom: 3px; }
+    .message-time { font-size: 0.68rem; opacity: 0.6; margin-top: 5px; text-align: right; }
+    .message.user .message-time { text-align: right; }
+    .message.consultant .message-time { text-align: left; }
+
+    /* Date divider */
+    .date-divider {
+        text-align: center; font-size: 0.72rem; color: var(--fg-secondary);
+        background: rgba(0,0,0,0.08); padding: 4px 12px; border-radius: 12px;
+        align-self: center; margin: 6px 0;
+    }
+
+    /* Input area modernizată */
     .input-area {
-        padding:20px;
-        background: var(--chat-input-bg);
-        border-top:1px solid var(--chat-input-border);
-        display:flex;
-        gap:10px;
-        align-items:flex-end;
+        padding: 12px 14px; background: var(--chat-input-bg);
+        border-top: 1px solid var(--chat-input-border);
+        display: flex; gap: 8px; align-items: flex-end;
     }
     .input-area textarea {
-        flex:1;
-        padding:12px;
-        border:2px solid var(--chat-input-border);
-        border-radius:24px;
-        resize:none;
-        font-size:1rem;
-        max-height:100px;
-        background: var(--chat-messages-bg);
-        color: var(--fg-primary);
-        transition:all 0.3s;
+        flex: 1; padding: 11px 14px;
+        border: 1.5px solid var(--chat-input-border);
+        border-radius: 22px; resize: none; font-size: 0.93rem;
+        max-height: 100px; background: var(--chat-messages-bg);
+        color: var(--fg-primary); transition: all 0.3s; line-height: 1.4;
+        font-family: 'DM Sans', sans-serif;
     }
-    .input-area textarea:focus {
-        outline:none;
-        border-color: var(--accent);
-        box-shadow:0 0 0 3px var(--accent-glow);
-    }
-    .input-actions { display:flex; gap:8px; }
+    .input-area textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow); }
+    .input-actions { display: flex; gap: 6px; }
     .input-actions button {
-        width:48px;
-        height:48px;
-        border:none;
-        border-radius:50%;
-        background: var(--chat-header-bg);
-        color:white;
-        cursor:pointer;
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        font-size:1.2rem;
-        transition:transform 0.3s, box-shadow 0.3s;
+        width: 44px; height: 44px; border: none; border-radius: 50%;
+        background: var(--chat-header-bg); color: white; cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 1.1rem; transition: transform 0.3s, box-shadow 0.3s;
+        flex-shrink: 0;
     }
-    .input-actions button:hover {
-        transform:scale(1.1);
-        box-shadow:0 5px 15px var(--chat-shadow);
+    .input-actions button:hover { transform: scale(1.12); box-shadow: 0 4px 12px var(--chat-shadow); }
+    .input-actions button.attach-btn {
+        background: var(--card-bg); border: 1.5px solid var(--chat-input-border);
+        color: var(--accent); font-size: 1.2rem;
     }
-    .hidden { display:none !important; }
-    .error-message { background:#ff4757; color:white; padding:10px; border-radius:8px; margin:10px; text-align:center; animation:slideIn 0.3s ease; }
-    @keyframes slideIn { from { transform:translateY(-20px); opacity:0; } to { transform:translateY(0); opacity:1; } }
-    .loading { text-align:center; color:var(--fg-secondary); padding:20px; font-style:italic; }
-    
+
+    .img-preview-bar {
+        display: flex; align-items: center; gap: 8px;
+        padding: 8px 14px; background: var(--chat-messages-bg);
+        border-top: 1px dashed var(--chat-input-border); font-size: 0.82rem;
+        color: var(--fg-secondary);
+    }
+    .img-preview-bar img { height: 38px; border-radius: 8px; border: 1px solid var(--chat-input-border); }
+    .img-preview-bar button { background: none; border: none; cursor: pointer; font-size: 1rem; color: var(--danger); padding: 0 4px; }
+    .input-area.drag-over { border: 2px dashed var(--accent); background: var(--accent-glow); }
+    .upload-hint { font-size: 0.72rem; color: var(--fg-secondary); text-align: center; padding: 4px 0 2px 0; opacity: 0.65; background: var(--chat-input-bg); }
+    .chat-img-thumb { max-width: 100%; max-height: 200px; border-radius: 10px; margin-top: 6px; display: block; cursor: pointer; }
+    .chat-img-thumb:hover { opacity: 0.9; }
+
+    .hidden { display: none !important; }
+    .error-message { background: #ff4757; color: white; padding: 10px; border-radius: 8px; margin: 10px; text-align: center; animation: slideIn 0.3s ease; }
+    @keyframes slideIn { from { transform: translateY(-20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    .loading { text-align: center; color: var(--fg-secondary); padding: 20px; font-style: italic; }
+
     .chat-toggle {
-        position:fixed;
-        bottom:25px;
-        right:25px;
-        width:65px;
-        height:65px;
-        border-radius:50%;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        border:none;
-        cursor:pointer;
-        z-index:9998;
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        box-shadow:0 8px 30px rgba(102,126,234,0.4);
-        transition:all 0.3s ease;
-    }
-    .chat-toggle:hover { transform:scale(1.1); box-shadow:0 12px 40px rgba(102,126,234,0.6); }
-    .chat-toggle svg { width:30px; height:30px; fill:white; transition:transform 0.3s ease; }
-    .chat-toggle:hover svg { transform:scale(1.1); }
-    .chat-badge { position:absolute; top:-5px; right:-5px; width:24px; height:24px; background:var(--danger); border-radius:50%; font-size:12px; font-weight:700; color:white; display:flex; align-items:center; justify-content:center; }
-    .chat-badge.visible { display:flex; animation:bounce 0.5s ease; }
-    @keyframes bounce { 0%,100%{transform:scale(1);} 50%{transform:scale(1.3);} }
-    
-    /* Butoane din stânga jos (cu text) */
-    .bottom-left-buttons {
-        position: fixed;
-        bottom: 25px;
-        left: 25px;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        z-index: 9998;
-    }
-
-    .bottom-button {
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-        gap: 12px;
-        padding: 12px 24px;
-        border-radius: 50px;
-        text-decoration: none;
-        color: white;
-        font-weight: 600;
-        font-size: 1.1rem;
-        box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+        position: fixed; bottom: 25px; right: 25px;
+        width: 62px; height: 62px; border-radius: 50%;
+        background: var(--chat-header-bg);
+        border: none; cursor: pointer; z-index: 9998;
+        display: flex; align-items: center; justify-content: center;
+        box-shadow: 0 8px 30px var(--chat-shadow);
         transition: all 0.3s ease;
-        min-width: 180px;
     }
-    .bottom-button:hover {
-        transform: scale(1.05);
-        box-shadow: 0 12px 40px rgba(0,0,0,0.6);
-    }
-    .bottom-button svg {
-        width: 28px;
-        height: 28px;
-        fill: white;
-    }
+    .chat-toggle:hover { transform: scale(1.1); }
+    .chat-toggle svg { width: 28px; height: 28px; fill: white; transition: transform 0.3s ease; }
+    .chat-badge { position: absolute; top: -5px; right: -5px; width: 22px; height: 22px; background: var(--danger); border-radius: 50%; font-size: 11px; font-weight: 700; color: white; display: none; align-items: center; justify-content: center; }
+    .chat-badge.visible { display: flex; animation: bounce 0.5s ease; }
+    @keyframes bounce { 0%,100%{transform:scale(1);} 50%{transform:scale(1.3);} }
 
-    .chatgpt-button {
-        background: linear-gradient(135deg, #10a37f, #0d8c6f);
+    /* ==================== BARA DE JOS ==================== */
+    .bottom-bar {
+        position: fixed; bottom: 0; left: 0; width: 100%;
+        display: flex; flex-direction: row; align-items: center;
+        justify-content: flex-start; gap: 8px; padding: 8px 16px;
+        background: rgba(10, 22, 40, 0.92); backdrop-filter: blur(12px);
+        border-top: 1px solid var(--border); z-index: 9000;
+        box-shadow: 0 -4px 20px rgba(0,0,0,0.4);
+        overflow-x: auto; flex-wrap: nowrap;
     }
-    .gmail-button {
-        background: linear-gradient(135deg, #D44638, #B23121);
+    .bottom-button {
+        display: flex; align-items: center; justify-content: center; gap: 8px;
+        padding: 9px 18px; border-radius: 50px; text-decoration: none; color: white;
+        font-weight: 600; font-size: 0.95rem; box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        transition: all 0.3s ease; white-space: nowrap; flex-shrink: 0;
     }
-    .yahoo-button {
-        background: linear-gradient(135deg, #6001D2, #4B01A3);
-    }
-    .aplmail-button {
-        background: linear-gradient(135deg, #1e3a5f, #0f2847);
-    }
-    .programs-button {
-        background: linear-gradient(135deg, #FF6B35, #D63230);
-    }
-    .radio-button {
-        background: linear-gradient(135deg, #4B7BE5, #3B5998);
-    }
-
-    .messages-area::-webkit-scrollbar { width:6px; }
-    .messages-area::-webkit-scrollbar-track { background:rgba(0,0,0,0.05); border-radius:3px; }
-    .messages-area::-webkit-scrollbar-thumb { background:var(--accent); border-radius:3px; }
-    .messages-area::-webkit-scrollbar-thumb:hover { background:var(--accent-glow); }
-    @media (prefers-reduced-motion: reduce) { *,*::before,*::after { animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; } }
+    .bottom-button:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 8px 25px rgba(0,0,0,0.5); }
+    .bottom-button svg { width: 22px; height: 22px; fill: white; flex-shrink: 0; }
+    .chatgpt-button  { background: linear-gradient(135deg, #10a37f, #0d8c6f); }
+    .gmail-button    { background: linear-gradient(135deg, #D44638, #B23121); }
+    .yahoo-button    { background: linear-gradient(135deg, #6001D2, #4B01A3); }
+    .aplmail-button  { background: linear-gradient(135deg, #1e3a5f, #0f2847); }
+    .programs-button { background: linear-gradient(135deg, #FF6B35, #D63230); }
+    .radio-button    { background: linear-gradient(135deg, #4B7BE5, #3B5998); }
+    .bottom-bar::-webkit-scrollbar { height: 3px; }
+    .bottom-bar::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
+    @media (max-width: 600px) { .bottom-button { padding: 8px 12px; font-size: 0.82rem; } .bottom-button svg { width: 18px; height: 18px; } }
+    @media (prefers-reduced-motion: reduce) { *,*::before,*::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; } }
 </style>
 </head>
-<body class="theme-default">
-<!-- fundal + particule -->
+<!-- TEMĂ DEFAULT SCHIMBATĂ: nordic-frost (luminoasă, profesională) -->
+<body class="theme-nordic-frost">
 <div class="bg-layer"></div>
 <div class="bg-grid"></div>
 <div class="particles" id="particles"></div>
 
-<!-- Ticker (mutat mai sus, mărit) -->
+<!-- Ticker -->
 <div class="ticker-container">
-    <div class="ticker">
-        <span id="ticker-text">Încărcare anunț...</span>
-    </div>
+    <div class="ticker"><span id="ticker-text">Încărcare anunț...</span></div>
 </div>
 
-<!-- Info box complet transparentă, fără etichete -->
+<!-- Info box -->
 <div id="info-box">
-    <div><span id="date"></span></div>
+    <div><span id="weekday"></span>, <span id="date"></span></div>
     <div><span id="time"></span><div class="status-dot"></div></div>
 </div>
 
-<!-- BUTON SCHIMBARE TEMĂ -->
-<div class="theme-switcher" id="themeSwitcher" title="Schimbă tema (13 stiluri)">🎨</div>
+<!-- Buton schimbare temă -->
+<div class="theme-switcher" id="themeSwitcher" title="Schimbă tema (21 stiluri)">🎨</div>
 
 <header>
     <img src="https://github.com/mailinternetx-sudo/imagine/blob/main/logo.jpg?raw=true" alt="Logo" class="logo" />
     <h1>Site unificat pentru acces</h1>
 </header>
 
-<!-- Butoane principale (mărite) -->
+<!-- Butoane principale -->
 <div class="links-container" id="links-container">
     <a href="https://ceib.mf.gov.md" target="_blank" class="menu-button big">
-        <img src="https://github.com/mailinternetx-sudo/imagine/blob/main/ceib.png?raw=true" alt="icon" />
-        CEIB
+        <img src="https://github.com/mailinternetx-sudo/imagine/blob/main/ceib.png?raw=true" alt="icon" />CEIB
     </a>
     <a href="https://e-alocatii.mf.gov.md/" target="_blank" class="menu-button big">
-        <img src="https://github.com/mailinternetx-sudo/imagine/blob/main/gab1.png?raw=true" alt="icon" />
-        GAB
+        <img src="https://github.com/mailinternetx-sudo/imagine/blob/main/gab1.png?raw=true" alt="icon" />GAB
     </a>
     <a href="https://sfs.md/ro" target="_blank" class="menu-button big">
-        <img src="https://github.com/mailinternetx-sudo/imagine/blob/main/sfs.png?raw=true" alt="icon" />
-        SFS.MD
+        <img src="https://github.com/mailinternetx-sudo/imagine/blob/main/sfs.png?raw=true" alt="icon" />SFS.MD
     </a>
     <a href="https://mtender.md/" target="_blank" class="menu-button big">
-        <img src="https://github.com/mailinternetx-sudo/imagine/blob/main/mtender1.png?raw=true" alt="icon" />
-        MTENDER.MD
+        <img src="https://github.com/mailinternetx-sudo/imagine/blob/main/mtender1.png?raw=true" alt="icon" />MTENDER.MD
     </a>
     <a href="https://www.legis.md/" target="_blank" class="menu-button big">
-        <img src="https://github.com/mailinternetx-sudo/imagine/blob/main/legis.png?raw=true" alt="icon" />
-        LEGIS
+        <img src="https://github.com/mailinternetx-sudo/imagine/blob/main/legis.png?raw=true" alt="icon" />LEGIS
     </a>
     <a href="https://achizitii.md/ro/" target="_blank" class="menu-button big">
-        <img src="https://github.com/mailinternetx-sudo/imagine/blob/main/achizitiimd1.svg?raw=true" alt="icon" />
-        Achizitii.MD
+        <img src="https://github.com/mailinternetx-sudo/imagine/blob/main/achizitiimd1.svg?raw=true" alt="icon" />Achizitii.MD
     </a>
     <a href="https://tender.gov.md/ro/" target="_blank" class="menu-button big">
-        <img src="https://github.com/mailinternetx-sudo/imagine/blob/main/aap12.png?raw=true" alt="icon" />
-        Agenția Achiziții Publice
+        <img src="https://github.com/mailinternetx-sudo/imagine/blob/main/aap12.png?raw=true" alt="icon" />Agenția Achiziții Publice
     </a>
     <a href="https://drive.google.com/drive/folders/1RGOCNVfbkBZWEoxZucHnuvG1IbK0d6EW?usp=sharing" target="_blank" class="menu-button">
-        <img src="https://github.com/mailinternetx-sudo/imagine/blob/main/alte4.png?raw=true" alt="icon" />
-        ALTELE
+        <img src="https://github.com/mailinternetx-sudo/imagine/blob/main/alte4.png?raw=true" alt="icon" />ALTELE
     </a>
     <a href="https://evo.gov.md/acasa/" target="_blank" class="menu-button">
-        <img src="https://github.com/mailinternetx-sudo/imagine/blob/main/rf1.png?raw=true" alt="icon" />
-        Certificate de Concediu Medical
+        <img src="https://github.com/mailinternetx-sudo/imagine/blob/main/rf1.png?raw=true" alt="icon" />Certificate de Concediu Medical
     </a>
     <a href="https://drive.google.com/drive/folders/1E6IGeImJPDHxsTKiKTN_tFX5bV5RWfi9?usp=drive_link" target="_blank" class="menu-button">
-        <img src="https://github.com/mailinternetx-sudo/imagine/blob/main/training.svg?raw=true" alt="icon" />
-        Instructiuni
+        <img src="https://github.com/mailinternetx-sudo/imagine/blob/main/training.svg?raw=true" alt="icon" />Instructiuni
+    </a>
+    <a href="https://drive.google.com/drive/folders/1nbpwaptvHrL6n4ke2whVXJvYuULvdBZv?usp=sharing" target="_blank" class="menu-button">
+        <img src="https://github.com/mailinternetx-sudo/imagine/blob/main/soft.png?raw=true" alt="icon" />Programe utile
+    </a>
+    <a href="https://www.radio.md/" target="_blank" class="menu-button">
+        <img src="https://cdn1.iconfinder.com/data/icons/electronic-devices-glyph/614/872_-_Radio-1024.png" alt="icon" />Radio On-line
     </a>
 </div>
 
-<!-- Contact info -->
 <div class="contact">
-    <p>Trebuie ajutor? <a href="mailto:contact@example.com">Contactează-ne</a></p>
+    <p id="phone-contact">Telefon: încărcare...</p>
+    <p><a href="https://docs.google.com/forms/d/e/1FAIpQLSfgFNOL8Yfi5knrQ1k82dbV7tGgqp9zDukmRVLgVe6zWvievQ/viewform?usp=sharing&ouid=112787161566953645990" target="_blank">Suport</a></p>
 </div>
 
-<!-- Footer -->
 <footer>
-    <p>&copy; 2025 Site unificat pentru acces. Toate drepturile rezervate.</p>
+    <p>Site creat pentru acces rapid la resurse utile.</p>
 </footer>
 
-<!-- Chat Container -->
-<div class="chat-container" id="chatContainer">
-    <div class="chat-header">
-        <button class="chat-close-btn" id="chatCloseBtn">×</button>
-        <h2>Chat Support</h2>
-        <p>Suntem aici să te ajutăm</p>
-    </div>
-    <div class="login-section" id="loginSection">
-        <input type="text" id="nameInput" placeholder="Introdu-ți numele" />
-        <input type="email" id="emailInput" placeholder="Introdu-ți email-ul" />
-        <button id="loginBtn">Intră în chat</button>
-    </div>
-    <div class="messages-area" id="messagesArea"></div>
-    <div class="input-area" id="inputArea" style="display:none;">
-        <textarea id="messageInput" placeholder="Scrie mesajul tău..." rows="1"></textarea>
-        <div class="input-actions">
-            <button id="sendBtn">➤</button>
-        </div>
-    </div>
+<!-- Web-stat vizitatori online - mutat jos centru -->
+<div id="webstat-box">
+    <span id="wts2205835"></span>
+    <script>var wts=document.createElement('script');wts.async=true;wts.src='https://app.ardalio.com/wts7.js';document.head.appendChild(wts);wts.onload = function(){ wtsl7(2205835,5); };</script>
+    <noscript><img src="https://app.ardalio.com/7/5/2205835.png" alt="webstat"></noscript>
 </div>
 
 <!-- Chat Toggle Button -->
-<button class="chat-toggle" id="chatToggle">
-    <span class="chat-badge" id="chatBadge">1</span>
-    <svg viewBox="0 0 24 24">
-        <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/>
-    </svg>
+<button class="chat-toggle" id="chatToggle" aria-label="Deschide chat">
+    <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z"/></svg>
+    <span class="chat-badge" id="chatBadge">0</span>
 </button>
 
-<!-- Bottom Left Buttons - Useful Programs & Radio Online -->
-<div class="bottom-left-buttons">
-    <a href="https://www.chatgpt.com" target="_blank" class="bottom-button chatgpt-button" title="ChatGPT">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/>
-        </svg>
-        ChatGPT
+<!-- Chat Container -->
+<div class="chat-container" id="chatContainer">
+    <!-- Header stil WhatsApp -->
+    <div class="chat-header">
+        <div class="chat-header-avatar">🤵</div>
+        <div class="chat-header-info">
+            <h2>Asistență Live</h2>
+            <div class="chat-header-online">
+                <div class="chat-header-online-dot"></div>
+                <p>Consultant disponibil</p>
+            </div>
+        </div>
+        <button class="chat-close-btn" id="chatCloseBtn">✕</button>
+    </div>
+
+    <!-- Login section -->
+    <div id="loginSection" class="login-section">
+        <div class="login-title">👋 Bun venit!</div>
+        <div class="login-subtitle">Completați datele pentru a intra în chat</div>
+        <div class="input-group">
+            <span class="input-icon">👤</span>
+            <input type="text" id="nume" placeholder="Numele tău *" required autocomplete="name">
+        </div>
+        <div class="input-group">
+            <span class="input-icon">🏛️</span>
+            <input type="text" id="institutie" placeholder="Instituția *" required autocomplete="organization">
+        </div>
+        <button onclick="login()">Intră în chat →</button>
+    </div>
+
+    <!-- Chat principal -->
+    <div id="chatMain" class="hidden" style="display:flex;flex-direction:column;height:100%;overflow:hidden;">
+        <div id="messagesArea" class="messages-area">
+            <div class="loading">📩 Așteptăm mesaje...</div>
+        </div>
+        <div id="imgPreviewBar" class="img-preview-bar hidden">
+            <span>📎 Imagine:</span>
+            <img id="imgPreviewThumb" src="" alt="preview">
+            <button onclick="cancelImageAttach()" title="Elimină imaginea">✕</button>
+        </div>
+        <div class="input-area" id="inputArea">
+            <textarea id="messageInput" placeholder="Scrie un mesaj... (Enter = trimite)" rows="1"></textarea>
+            <div class="input-actions">
+                <button class="attach-btn" onclick="uploadImage()" title="Atașează imagine">📎</button>
+                <button onclick="sendMessage()" title="Trimite">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="white"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+                </button>
+            </div>
+        </div>
+        <div class="upload-hint">💡 Trage o imagine direct în câmpul de mesaj · Shift+Enter = linie nouă</div>
+    </div>
+</div>
+
+<input type="file" id="imageUpload" accept="image/*" style="display:none;">
+
+<!-- Bara de jos -->
+<div class="bottom-bar">
+    <a href="https://chatgpt.com/" target="_blank" class="bottom-button chatgpt-button" title="ChatGPT">
+        <svg viewBox="0 0 24 24"><path d="M22 12c0 5.52-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2s10 4.48 10 10zm-8.5-6L9 12h3v6l4.5-6h-3V6z"/></svg>ChatGPT
     </a>
-    <a href="https://mail.google.com" target="_blank" class="bottom-button gmail-button" title="Gmail">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-        </svg>
-        Gmail
+    <a href="https://gmail.com/" target="_blank" class="bottom-button gmail-button" title="Gmail">
+        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>Gmail.com
     </a>
-    <a href="https://mail.yahoo.com" target="_blank" class="bottom-button yahoo-button" title="Yahoo Mail">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z"/>
-        </svg>
-        Yahoo Mail
+    <a href="https://yahoo.com/" target="_blank" class="bottom-button yahoo-button" title="Yahoo Mail">
+        <span style="font-size:1.2rem;font-weight:bold;margin-right:2px;">Y!</span>Yahoo Mail
     </a>
-    <a href="https://aplmail.md" target="_blank" class="bottom-button aplmail-button" title="AplMail">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-        </svg>
-        AplMail
+    <a href="https://mail-apl.gov.md/" target="_blank" class="bottom-button aplmail-button" title="APL Mail">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="white"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>APL Mail
     </a>
-    <a href="https://drive.google.com/drive/folders/1RGOCNVfbkBZWEoxZucHnuvG1IbK0d6EW?usp=sharing" target="_blank" class="bottom-button programs-button" title="Programe Utile">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
-        </svg>
-        Programe
+    <a href="https://drive.google.com/drive/folders/1nbpwaptvHrL6n4ke2whVXJvYuULvdBZv?usp=sharing" target="_blank" class="bottom-button programs-button" title="Programe Utile">
+        <svg viewBox="0 0 24 24"><path d="M9 3H5c-1.1 0-2 .9-2 2v4c0 1.1.9 2 2 2h4c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 6H5V5h4v4zm10-6h-4c-1.1 0-2 .9-2 2v4c0 1.1.9 2 2 2h4c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 6h-4V5h4v4zM9 13H5c-1.1 0-2 .9-2 2v4c0 1.1.9 2 2 2h4c1.1 0 2-.9 2-2v-4c0-1.1-.9-2-2-2zm0 6H5v-4h4v4zm10-6h-4c-1.1 0-2 .9-2 2v4c0 1.1.9 2 2 2h4c1.1 0 2-.9 2-2v-4c0-1.1-.9-2-2-2zm0 6h-4v-4h4v4z"/></svg>Programe utile
     </a>
-    <a href="https://drive.google.com/drive/folders/1E6IGeImJPDHxsTKiKTN_tFX5bV5RWfi9?usp=drive_link" target="_blank" class="bottom-button radio-button" title="Radio On-line">
-        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm0-13c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0 8c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/>
-        </svg>
-        Radio
+    <a href="https://www.radio.md/" target="_blank" class="bottom-button radio-button" title="Radio On-line">
+        <svg viewBox="0 0 24 24"><path d="M20 6h-2.18c.07-.31.18-.59.18-.91C18 3.4 16.6 2 14.91 2c-.9 0-1.65.36-2.22.91L12 3.59l-.69-.68C10.74 2.36 9.99 2 9.09 2 7.4 2 6 3.4 6 5.09c0 .32.09.61.18.91H4c-1.11 0-2 .89-2 2v11c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-5.09-2c.47 0 .91.2 1.23.52.32.32.52.76.52 1.23 0 .96-.79 1.75-1.75 1.75H12.5l2.41-3.5zM9.09 4c.47 0 .91.2 1.23.52L12.73 8H9.09C8.13 8 7.34 7.21 7.34 6.25c0-.47.2-.91.52-1.23C8.18 4.7 8.62 4 9.09 4zM20 19H4V8h16v11zm-8-8.5c-2.49 0-4.5 2.01-4.5 4.5s2.01 4.5 4.5 4.5 4.5-2.01 4.5-4.5-2.01-4.5-4.5-4.5zm0 7c-1.38 0-2.5-1.12-2.5-2.5S10.62 12.5 12 12.5s2.5 1.12 2.5 2.5S13.38 17.5 12 17.5zm0-4c-.83 0-1.5.67-1.5 1.5s.67 1.5 1.5 1.5 1.5-.67 1.5-1.5-.67-1.5-1.5-1.5z"/></svg>Radio On-line
     </a>
 </div>
 
 <script>
-// Particles animation
-function createParticles() {
-    const container = document.getElementById('particles');
-    for (let i = 0; i < 30; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        particle.style.left = Math.random() * 100 + '%';
-        particle.style.top = Math.random() * 100 + '%';
-        particle.style.animationDelay = Math.random() * 15 + 's';
-        container.appendChild(particle);
-    }
-}
+    // ==================== CONFIGURAȚIE ====================
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwcbsr4aJVlRpueO-F0DLDdFaRPd8rDXQu_5Sd5wyHNA6fzkCs7b-IHY0Kvdczv2zq7_w/exec';
 
-// Date and time display
-function updateDateTime() {
-    const now = new Date();
-    const dateStr = now.toLocaleDateString('ro-RO', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-    const timeStr = now.toLocaleTimeString('ro-RO', { hour: '2-digit', minute: '2-digit' });
-    document.getElementById('date').textContent = dateStr;
-    document.getElementById('time').textContent = timeStr;
-}
+    // ==================== VARIABILE GLOBALE CHAT ====================
+    let userData = null;
+    let userIp = null;
+    let displayedMessages = new Set();
+    let lastMessageTimestamp = null;
 
-// Ticker animation
-function updateTicker() {
-    const announcements = [
-        '📢 Bienvenue sur notre portail unifié!',
-        '🔔 Accédez à tous les services gouvernementaux',
-        '✨ Interface moderne et sécurisée'
-    ];
-    const ticker = announcements[Math.floor(Math.random() * announcements.length)];
-    document.getElementById('ticker-text').textContent = ticker;
-}
+    // ==================== ELEMENTE DOM ====================
+    const chatContainer = document.getElementById('chatContainer');
+    const chatToggle    = document.getElementById('chatToggle');
+    const chatCloseBtn  = document.getElementById('chatCloseBtn');
+    const chatBadge     = document.getElementById('chatBadge');
+    const loginSection  = document.getElementById('loginSection');
+    const chatMain      = document.getElementById('chatMain');
+    const messagesArea  = document.getElementById('messagesArea');
+    const messageInput  = document.getElementById('messageInput');
+    const numeInput     = document.getElementById('nume');
+    const institutieInput = document.getElementById('institutie');
+    const imageUploadInput = document.getElementById('imageUpload');
+    const imgPreviewBar   = document.getElementById('imgPreviewBar');
+    const imgPreviewThumb = document.getElementById('imgPreviewThumb');
+    const inputArea       = document.getElementById('inputArea');
+    let pendingImageFile  = null;
 
-// Theme switcher
-const themes = ['default', 'cyber', 'gradient', 'corporate', 'futuristic', 'cosmic-neon', 'eco-minimal', 'dark-glass', 'sunset-gradient', 'ice-tech', 'ocean-breeze', 'ai-neural', 'soft-light'];
-let currentThemeIndex = 0;
-
-document.getElementById('themeSwitcher').addEventListener('click', () => {
-    currentThemeIndex = (currentThemeIndex + 1) % themes.length;
-    document.body.className = `theme-${themes[currentThemeIndex]}`;
-    localStorage.setItem('selectedTheme', themes[currentThemeIndex]);
-});
-
-// Load saved theme
-const savedTheme = localStorage.getItem('selectedTheme');
-if (savedTheme) {
-    document.body.className = `theme-${savedTheme}`;
-    currentThemeIndex = themes.indexOf(savedTheme);
-}
-
-// Animate buttons on load
-window.addEventListener('load', () => {
-    const buttons = document.querySelectorAll('.menu-button');
-    buttons.forEach((btn, index) => {
-        setTimeout(() => btn.classList.add('visible'), index * 50);
+    // ==================== CHAT TOGGLE ====================
+    chatToggle.addEventListener('click', () => {
+        chatContainer.classList.toggle('open');
+        if (chatContainer.classList.contains('open')) {
+            chatBadge.classList.remove('visible');
+            if (userData) messageInput.focus();
+        }
     });
-});
+    chatCloseBtn.addEventListener('click', () => chatContainer.classList.remove('open'));
 
-// Chat functionality
-const chatToggle = document.getElementById('chatToggle');
-const chatContainer = document.getElementById('chatContainer');
-const chatCloseBtn = document.getElementById('chatCloseBtn');
-const loginBtn = document.getElementById('loginBtn');
-const nameInput = document.getElementById('nameInput');
-const emailInput = document.getElementById('emailInput');
-const messageInput = document.getElementById('messageInput');
-const sendBtn = document.getElementById('sendBtn');
-const messagesArea = document.getElementById('messagesArea');
-const inputArea = document.getElementById('inputArea');
-const loginSection = document.getElementById('loginSection');
-
-chatToggle.addEventListener('click', () => {
-    chatContainer.classList.toggle('open');
-});
-
-chatCloseBtn.addEventListener('click', () => {
-    chatContainer.classList.remove('open');
-});
-
-loginBtn.addEventListener('click', () => {
-    if (nameInput.value && emailInput.value) {
-        loginSection.style.display = 'none';
-        inputArea.style.display = 'flex';
-        addMessage('Consultant', `Bună ${nameInput.value}! Cum te pot ajuta?`);
+    // ==================== REQUESTS ====================
+    async function makeRequest(params) {
+        const url = new URL(SCRIPT_URL);
+        Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
+        try {
+            const response = await fetch(url.toString());
+            const text = await response.text();
+            try { return JSON.parse(text); } catch(e) { return { status: 'error', message: 'Răspuns invalid' }; }
+        } catch (error) { throw error; }
     }
-});
 
-sendBtn.addEventListener('click', () => {
-    if (messageInput.value) {
-        addMessage('User', messageInput.value);
+    async function getUserIp() {
+        try {
+            const r = await fetch('https://api.ipify.org?format=json');
+            const d = await r.json();
+            return d.ip;
+        } catch {
+            return 'user_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5);
+        }
+    }
+
+    // ==================== MESAJE ====================
+    function generateMessageId(m) {
+        return `${m.timestamp}_${m.mesaj}_${m.isUser ? 'user' : 'consultant'}`;
+    }
+
+    function addMessageToChat(msg) {
+        const mid = generateMessageId(msg);
+        if (displayedMessages.has(mid)) return false;
+        const loading = messagesArea.querySelector('.loading');
+        if (loading) loading.remove();
+        displayedMessages.add(mid);
+        if (!lastMessageTimestamp || new Date(msg.timestamp) > new Date(lastMessageTimestamp)) lastMessageTimestamp = msg.timestamp;
+
+        const div = document.createElement('div');
+        div.className = `message ${msg.isUser ? 'user' : 'consultant'}`;
+
+        let content = '';
+        if (!msg.isUser) content += '<div class="message-sender">🤵 Consultant</div>';
+
+        // Parse imagini markdown
+        const imageRegex = /!\[.*?\]\((.*?)\)/g;
+        let match, lastIndex = 0;
+        let parts = [];
+        let text = msg.mesaj;
+        while ((match = imageRegex.exec(text)) !== null) {
+            if (match.index > lastIndex) parts.push({ type: 'text', content: text.substring(lastIndex, match.index) });
+            parts.push({ type: 'image', url: match[1] });
+            lastIndex = match.index + match[0].length;
+        }
+        if (lastIndex < text.length) parts.push({ type: 'text', content: text.substring(lastIndex) });
+        if (parts.length === 0) {
+            content += escapeHtml(text);
+        } else {
+            parts.forEach(part => {
+                if (part.type === 'text') content += escapeHtml(part.content);
+                else content += `<img src="${sanitizeUrl(part.url)}" alt="Imagine" class="chat-img-thumb" onclick="window.open(this.src,'_blank')">`;
+            });
+        }
+
+        const time = new Date(msg.timestamp).toLocaleTimeString('ro-RO', { hour: '2-digit', minute: '2-digit' });
+        content += `<div class="message-time">${time}</div>`;
+        div.innerHTML = content;
+        messagesArea.appendChild(div);
+        messagesArea.scrollTop = messagesArea.scrollHeight;
+        return true;
+    }
+
+    // Sanitizare XSS
+    function escapeHtml(str) {
+        return String(str)
+            .replace(/&/g,'&amp;')
+            .replace(/</g,'&lt;')
+            .replace(/>/g,'&gt;')
+            .replace(/"/g,'&quot;')
+            .replace(/'/g,'&#39;');
+    }
+    function sanitizeUrl(url) {
+        try {
+            const u = new URL(url);
+            if (u.protocol !== 'https:' && u.protocol !== 'http:') return '#';
+            return url.replace(/"/g,'%22').replace(/</g,'%3C').replace(/>/g,'%3E');
+        } catch { return '#'; }
+    }
+
+    async function loadMessages() {
+        if (!userData || !userIp) return;
+        try {
+            const params = { action: 'fetchMessages', userIp };
+            if (lastMessageTimestamp) params.lastTimestamp = lastMessageTimestamp;
+            const result = await makeRequest(params);
+            if (result.status === 'success' && result.data?.messages) {
+                result.data.messages.forEach(msg => {
+                    if (msg.ip === userIp && msg.mesaj) addMessageToChat({ mesaj: msg.mesaj, timestamp: msg.timestamp, isUser: true });
+                    if (msg.ip === userIp && msg.raspuns?.trim()) addMessageToChat({ mesaj: msg.raspuns, timestamp: msg.timestamp, isUser: false });
+                });
+            }
+        } catch (e) { console.error('Eroare preluare mesaje', e); }
+    }
+
+    async function login() {
+        const nume = numeInput.value.trim();
+        const institutie = institutieInput.value.trim();
+        if (!nume || !institutie) { alert('Completează toate câmpurile!'); return; }
+        userIp = await getUserIp();
+        userData = { nume, institutie, ip: userIp };
+        loginSection.classList.add('hidden');
+        chatMain.classList.remove('hidden');
+        chatMain.style.display = 'flex';
+        await loadMessages();
+        setInterval(loadMessages, 3000);
+        setTimeout(() => addMessageToChat({
+            mesaj: 'Bun venit! Un consultant vă va răspunde în curând.',
+            timestamp: new Date().toISOString(), isUser: false
+        }), 1000);
+    }
+
+    function uploadImage() { imageUploadInput.click(); }
+
+    async function sendMessage(customMessage = null) {
+        if (!userData) return;
+        if (pendingImageFile && !customMessage) { await uploadAndSendImage(pendingImageFile); return; }
+        const mesaj = (customMessage || messageInput.value).trim();
+        if (!mesaj) return;
+        messageInput.disabled = true;
+        const originalText = messageInput.value;
         messageInput.value = '';
+        messageInput.style.height = 'auto';
+        const localTimestamp = new Date().toISOString();
+        try {
+            const result = await makeRequest({
+                action: 'newMessage',
+                nume: userData.nume,
+                institutie: userData.institutie,
+                mesaj,
+                imagine: mesaj.includes('![') ? mesaj : '',
+                ip: userData.ip
+            });
+            if (result.status === 'success') {
+                addMessageToChat({ mesaj, timestamp: result.data?.timestamp || localTimestamp, isUser: true });
+            } else throw new Error(result.message);
+        } catch (error) {
+            const errDiv = document.createElement('div');
+            errDiv.className = 'error-message';
+            errDiv.textContent = '❌ Nu s-a putut trimite. Reîncearcă.';
+            document.querySelector('.input-area').prepend(errDiv);
+            setTimeout(() => errDiv.remove(), 3000);
+            messageInput.value = originalText;
+        } finally {
+            messageInput.disabled = false;
+            messageInput.focus();
+        }
     }
-});
 
-function addMessage(sender, text) {
-    const messageEl = document.createElement('div');
-    messageEl.className = `message ${sender === 'User' ? 'user' : 'consultant'}`;
-    messageEl.textContent = text;
-    messagesArea.appendChild(messageEl);
-    messagesArea.scrollTop = messagesArea.scrollHeight;
-}
+    // ==================== IMAGINE PREVIEW & DRAG+DROP ====================
+    function showImagePreview(file) {
+        pendingImageFile = file;
+        const reader = new FileReader();
+        reader.onload = e => { imgPreviewThumb.src = e.target.result; imgPreviewBar.classList.remove('hidden'); };
+        reader.readAsDataURL(file);
+    }
 
-// Initialize
-createParticles();
-updateDateTime();
-updateTicker();
-setInterval(updateDateTime, 1000);
+    function cancelImageAttach() {
+        pendingImageFile = null;
+        imgPreviewThumb.src = '';
+        imgPreviewBar.classList.add('hidden');
+        imageUploadInput.value = '';
+    }
+
+    inputArea.addEventListener('dragover', e => { e.preventDefault(); inputArea.classList.add('drag-over'); });
+    inputArea.addEventListener('dragleave', () => inputArea.classList.remove('drag-over'));
+    inputArea.addEventListener('drop', e => {
+        e.preventDefault();
+        inputArea.classList.remove('drag-over');
+        const file = e.dataTransfer.files[0];
+        if (file && file.type.startsWith('image/')) {
+            if (!userData) { alert('Trebuie să fii autentificat în chat pentru a încărca imagini.'); return; }
+            showImagePreview(file);
+        }
+    });
+
+    imageUploadInput.addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (!file) return;
+        if (!file.type.startsWith('image/')) { alert('Te rugăm să selectezi o imagine.'); imageUploadInput.value = ''; return; }
+        if (!userData) { alert('Trebuie să fii autentificat în chat pentru a încărca imagini.'); imageUploadInput.value = ''; return; }
+        showImagePreview(file);
+    });
+
+    async function uploadAndSendImage(file) {
+        const loadingMsg = document.createElement('div');
+        loadingMsg.className = 'message consultant';
+        loadingMsg.innerHTML = '<div class="message-sender">🤵 Consultant</div>⏫ Se încarcă imaginea...';
+        messagesArea.appendChild(loadingMsg);
+        messagesArea.scrollTop = messagesArea.scrollHeight;
+
+        const formData = new FormData();
+        formData.append('action', 'uploadImage');
+        formData.append('image', file);
+        formData.append('nume', userData.nume);
+        formData.append('institutie', userData.institutie);
+        formData.append('ip', userIp);
+        try {
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 30000);
+            const response = await fetch(SCRIPT_URL, { method: 'POST', body: formData, signal: controller.signal });
+            clearTimeout(timeoutId);
+            const result = await response.json();
+            loadingMsg.remove();
+            if (result.status === 'success' && result.data?.imageUrl) {
+                await sendMessage(`![Imagine](${result.data.imageUrl})`);
+            } else { throw new Error(result.message || 'Eroare la încărcare'); }
+        } catch (error) {
+            loadingMsg.remove();
+            const errDiv = document.createElement('div');
+            errDiv.className = 'error-message';
+            errDiv.textContent = error.name === 'AbortError' ? '❌ Timpul de încărcare a expirat.' : '❌ Imaginea nu s-a putut încărca.';
+            document.querySelector('.input-area').prepend(errDiv);
+            setTimeout(() => errDiv.remove(), 3000);
+        } finally { cancelImageAttach(); }
+    }
+
+    // ==================== KEYBOARD HANDLERS ====================
+    messageInput.addEventListener('input', function() { this.style.height = 'auto'; this.style.height = (this.scrollHeight) + 'px'; });
+    // Enter = trimite, Shift+Enter = linie nouă
+    messageInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
+    });
+    // Enter pe câmpul Nume → focus pe Instituție
+    numeInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') { e.preventDefault(); institutieInput.focus(); }
+    });
+    // Enter pe câmpul Instituție → login
+    institutieInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') { e.preventDefault(); login(); }
+    });
+
+    // ==================== PARTICULE ====================
+    function createParticles() {
+        const container = document.getElementById('particles');
+        if (!container) return;
+        for (let i = 0; i < 15; i++) {
+            const p = document.createElement('div');
+            p.className = 'particle';
+            p.style.left = Math.random() * 100 + '%';
+            p.style.top = Math.random() * 100 + '%';
+            p.style.animationDelay = Math.random() * 15 + 's';
+            p.style.animationDuration = (10 + Math.random() * 10) + 's';
+            container.appendChild(p);
+        }
+    }
+    createParticles();
+
+    // ==================== ANIMATIE BUTOANE ====================
+    function animateButtons() {
+        const buttons = document.querySelectorAll('.menu-button');
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => entry.target.classList.add('visible'), prefersReducedMotion ? 0 : index * 80);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        buttons.forEach(btn => observer.observe(btn));
+    }
+    animateButtons();
+
+    // ==================== DATA / ORA ====================
+    function updateDateTime() {
+        const now = new Date();
+        const days = ['Duminică','Luni','Marți','Miercuri','Joi','Vineri','Sâmbătă'];
+        document.getElementById('weekday').textContent = days[now.getDay()];
+        document.getElementById('date').textContent = now.toLocaleDateString('ro-RO', { timeZone: 'Europe/Chisinau', day: '2-digit', month: '2-digit', year: 'numeric' });
+        document.getElementById('time').textContent = now.toLocaleTimeString('ro-RO', { timeZone: 'Europe/Chisinau', hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    }
+    setInterval(updateDateTime, 1000);
+    updateDateTime();
+
+    // ==================== TELEFON ====================
+    const phoneUrl = 'https://raw.githubusercontent.com/mailinternetx-sudo/suport/refs/heads/main/suport.txt';
+    fetch(phoneUrl).then(r => r.text()).then(t => { document.getElementById('phone-contact').textContent = t.trim() || 'Telefon: indisponibil'; })
+        .catch(() => { document.getElementById('phone-contact').textContent = 'Telefon: eroare'; });
+
+    // ==================== TICKER ====================
+    const tickerUrl = 'https://raw.githubusercontent.com/mailinternetx-sudo/my-text-file/refs/heads/main/anunt.txt';
+    function loadTicker() {
+        fetch(tickerUrl).then(r => r.text()).then(t => { document.getElementById('ticker-text').textContent = t.trim().replace(/\n/g, ' • ') + '   '; })
+            .catch(() => { document.getElementById('ticker-text').textContent = 'Eroare anunț'; });
+    }
+    loadTicker();
+    setInterval(loadTicker, 600000);
+
+    // ==================== TEMA (SWITCHER) ====================
+    const themeSwitcher = document.getElementById('themeSwitcher');
+    const themes = [
+        'default', 'cyber', 'gradient', 'corporate', 'futuristic',
+        'cosmic-neon', 'eco-minimal', 'dark-glass', 'sunset-gradient',
+        'ice-tech', 'ocean-breeze', 'ai-neural', 'soft-light',
+        'cherry-blossom', 'midnight-purple', 'forest-dark', 'golden-hour', 'nordic-frost',
+        'ember-dark', 'aqua-slate', 'rose-quartz'
+    ];
+    let savedTheme = localStorage.getItem('selectedTheme') || 'nordic-frost';
+    if (!themes.includes(savedTheme)) savedTheme = 'nordic-frost';
+    themes.forEach(t => document.body.classList.remove(`theme-${t}`));
+    document.body.classList.add(`theme-${savedTheme}`);
+    let currentThemeIndex = themes.indexOf(savedTheme);
+
+    themeSwitcher.addEventListener('click', () => {
+        currentThemeIndex = (currentThemeIndex + 1) % themes.length;
+        const newTheme = themes[currentThemeIndex];
+        themes.forEach(t => document.body.classList.remove(`theme-${t}`));
+        document.body.classList.add(`theme-${newTheme}`);
+        localStorage.setItem('selectedTheme', newTheme);
+    });
+
+    // Expunere globală
+    window.login = login;
+    window.sendMessage = sendMessage;
+    window.uploadImage = uploadImage;
+    window.cancelImageAttach = cancelImageAttach;
 </script>
 </body>
 </html>
