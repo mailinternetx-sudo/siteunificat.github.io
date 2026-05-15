@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Site unificat pentru acces · Theme switcher</title>
+<title>Site unificat · Chat & Servicii</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -174,7 +174,6 @@
     @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(1.2); } }
 
     /* ==================== WEBSTAT + THEME SWITCHER ==================== */
-    /* webstat mutat jos centru */
     #webstat-box {
         position: fixed;
         bottom: 55px;
@@ -186,6 +185,21 @@
         text-align: center;
     }
     #webstat-box:hover { opacity: 1; }
+
+    /* REPOZITIONARE WEB-STAT JOS CENTRU (îmbunătățit) */
+    #webstat-container {
+        position: fixed;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 999;
+        text-align: center;
+        background: rgba(10, 22, 40, 0.6);
+        padding: 5px 15px;
+        border-radius: 20px;
+        backdrop-filter: blur(5px);
+        pointer-events: auto;
+    }
 
     .theme-switcher {
         position: fixed; top: 100px; right: 15px;
@@ -390,7 +404,6 @@
     }
 
     /* ===== TEME NOI ===== */
-    /* Temă nouă: Ember Dark (roșu-portocaliu pe negru) */
     .theme-ember-dark {
         --bg-primary: #120800; --bg-secondary: #200e00; --fg-primary: #fff4ee; --fg-secondary: #ffb07a;
         --accent: #ff5a1f; --accent-glow: rgba(255,90,31,0.5); --bg-grid-color: rgba(255,90,31,0.06);
@@ -402,7 +415,6 @@
         --chat-login-bg: #200e00; --chat-shadow: rgba(255,90,31,0.4);
     }
 
-    /* Temă nouă: Aqua Slate (albastru-gri elegant) */
     .theme-aqua-slate {
         --bg-primary: #1e2a38; --bg-secondary: #243344; --fg-primary: #d8eaf5; --fg-secondary: #8aadc5;
         --accent: #38bdf8; --accent-glow: rgba(56,189,248,0.4); --bg-grid-color: rgba(56,189,248,0.05);
@@ -414,7 +426,6 @@
         --chat-login-bg: #243344; --chat-shadow: rgba(56,189,248,0.3);
     }
 
-    /* Temă nouă: Rose Quartz (roz pastel minimalist) */
     .theme-rose-quartz {
         --bg-primary: #fff5f7; --bg-secondary: #ffe8ed; --fg-primary: #3d1a24; --fg-secondary: #8c4a5e;
         --accent: #e05c78; --accent-glow: rgba(224,92,120,0.3); --bg-grid-color: rgba(224,92,120,0.04);
@@ -535,14 +546,12 @@
     .message.user .message-time { text-align: right; }
     .message.consultant .message-time { text-align: left; }
 
-    /* Date divider */
     .date-divider {
         text-align: center; font-size: 0.72rem; color: var(--fg-secondary);
         background: rgba(0,0,0,0.08); padding: 4px 12px; border-radius: 12px;
         align-self: center; margin: 6px 0;
     }
 
-    /* Input area modernizată */
     .input-area {
         padding: 12px 14px; background: var(--chat-input-bg);
         border-top: 1px solid var(--chat-input-border);
@@ -583,6 +592,57 @@
     .upload-hint { font-size: 0.72rem; color: var(--fg-secondary); text-align: center; padding: 4px 0 2px 0; opacity: 0.65; background: var(--chat-input-bg); }
     .chat-img-thumb { max-width: 100%; max-height: 200px; border-radius: 10px; margin-top: 6px; display: block; cursor: pointer; }
     .chat-img-thumb:hover { opacity: 0.9; }
+
+    /* STILURI NOI PENTRU IMAGINE ÎN CHAT (din modificarea cerută) */
+    .chat-footer {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px;
+        background: var(--bg-secondary);
+    }
+    .image-upload-label {
+        cursor: pointer;
+        color: var(--accent);
+        font-size: 1.4rem;
+        display: flex;
+        align-items: center;
+    }
+    #imagePreviewContainer {
+        display: none;
+        position: absolute;
+        bottom: 70px;
+        left: 10px;
+        background: var(--bg-secondary);
+        padding: 10px;
+        border-radius: 10px;
+        border: 1px solid var(--accent);
+        z-index: 10;
+    }
+    #imagePreview {
+        max-width: 100px;
+        max-height: 100px;
+        border-radius: 5px;
+    }
+    .remove-img {
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        background: var(--danger);
+        color: white;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        text-align: center;
+        cursor: pointer;
+        font-size: 12px;
+    }
+    .chat-msg img {
+        max-width: 100%;
+        border-radius: 8px;
+        margin-top: 5px;
+        cursor: pointer;
+    }
 
     .hidden { display: none !important; }
     .error-message { background: #ff4757; color: white; padding: 10px; border-radius: 8px; margin: 10px; text-align: center; animation: slideIn 0.3s ease; }
@@ -686,7 +746,7 @@
         <img src="https://github.com/mailinternetx-sudo/imagine/blob/main/alte4.png?raw=true" alt="icon" />ALTELE
     </a>
     <a href="https://evo.gov.md/acasa/" target="_blank" class="menu-button">
-        <img src="https://github.com/mailinternetx-sudo/imagine/blob/main/rf3.png?raw=true" alt="icon" />Certificate de Concediu Medical
+        <img src="https://github.com/mailinternetx-sudo/imagine/blob/main/med.png?raw=true" alt="icon" />Certificate de Concediu Medical
     </a>
     <a href="https://drive.google.com/drive/folders/1E6IGeImJPDHxsTKiKTN_tFX5bV5RWfi9?usp=drive_link" target="_blank" class="menu-button">
         <img src="https://github.com/mailinternetx-sudo/imagine/blob/main/training.svg?raw=true" alt="icon" />Instructiuni
@@ -708,11 +768,17 @@
     <p>Site creat pentru acces rapid la resurse utile.</p>
 </footer>
 
-<!-- Web-stat vizitatori online - mutat jos centru -->
+<!-- Web-stat (păstrat original + container nou) -->
 <div id="webstat-box">
     <span id="wts2205835"></span>
     <script>var wts=document.createElement('script');wts.async=true;wts.src='https://app.ardalio.com/wts7.js';document.head.appendChild(wts);wts.onload = function(){ wtsl7(2205835,5); };</script>
     <noscript><img src="https://app.ardalio.com/7/5/2205835.png" alt="webstat"></noscript>
+</div>
+
+<div id="webstat-container">
+    <a href="https://www.web-stat.com" rel="nofollow">
+        <img src="https://www.web-stat.com/stats.php?ID=XXXXXX&amp;st=0" border="0" alt="Web-Stat">
+    </a>
 </div>
 
 <!-- Chat Toggle Button -->
@@ -721,7 +787,7 @@
     <span class="chat-badge" id="chatBadge">0</span>
 </button>
 
-<!-- Chat Container -->
+<!-- Chat Container (sistemul original complet păstrat) -->
 <div class="chat-container" id="chatContainer">
     <!-- Header stil WhatsApp -->
     <div class="chat-header">
