@@ -144,7 +144,17 @@
     }
     .contact a:hover::after { width: 100%; }
 
-    footer { margin-top: 80px; margin-bottom: 90px; font-size: 0.9em; color: var(--fg-secondary); padding: 20px; opacity: 0.7; }
+    footer { margin-top: 40px; margin-bottom: 10px; font-size: 0.9em; color: var(--fg-secondary); padding: 20px; opacity: 0.7; }
+
+    /* Secțiunea webstat — centrată, jos, nefixată, deasupra barei de jos */
+    .webstat-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding-bottom: 90px; /* spațiu pentru bara fixă de jos */
+        gap: 6px;
+    }
 
     /* ==================== TICKER ==================== */
     .ticker-container {
@@ -175,30 +185,25 @@
 
     /* ==================== WEBSTAT + THEME SWITCHER ==================== */
     #webstat-box {
-        position: fixed;
-        bottom: 55px;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 101;
+        /* Nefixat — în flux normal, centrat, jos */
+        display: block;
+        text-align: center;
+        margin: 30px auto 8px auto;
         opacity: 0.85;
         transition: opacity 0.3s;
-        text-align: center;
     }
     #webstat-box:hover { opacity: 1; }
 
-    /* REPOZITIONARE WEB-STAT JOS CENTRU (îmbunătățit) */
+    /* CONTAINER WEB-STAT JOS CENTRU (nefixat, în flux normal) */
     #webstat-container {
-        position: fixed;
-        bottom: 10px;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 999;
+        display: block;
         text-align: center;
+        margin: 0 auto 20px auto;
         background: rgba(10, 22, 40, 0.6);
         padding: 5px 15px;
         border-radius: 20px;
         backdrop-filter: blur(5px);
-        pointer-events: auto;
+        width: fit-content;
     }
 
     .theme-switcher {
@@ -768,7 +773,8 @@
     <p>Site creat pentru acces rapid la resurse utile.</p>
 </footer>
 
-<!-- Web-stat (păstrat original + container nou) -->
+<!-- Web-stat — jos pe centru, nefixat, în flux normal -->
+<div class="webstat-section">
 <div id="webstat-box">
     <span id="wts2205835"></span>
     <script>var wts=document.createElement('script');wts.async=true;wts.src='https://app.ardalio.com/wts7.js';document.head.appendChild(wts);wts.onload = function(){ wtsl7(2205835,5); };</script>
@@ -779,6 +785,7 @@
     <a href="https://www.web-stat.com" rel="nofollow">
         <img src="https://www.web-stat.com/stats.php?ID=XXXXXX&amp;st=0" border="0" alt="Web-Stat">
     </a>
+</div>
 </div>
 
 <!-- Chat Toggle Button -->
@@ -866,7 +873,9 @@
 
 <script>
     // ==================== CONFIGURAȚIE ====================
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwcbsr4aJVlRpueO-F0DLDdFaRPd8rDXQu_5Sd5wyHNA6fzkCs7b-IHY0Kvdczv2zq7_w/exec';
+    // TOATE request-urile trec prin Cloudflare Worker (care rezolvă CORS și securitatea)
+    // Worker-ul face el fetch la Google Apps Script — browserul NU contactează GAS direct
+    const WORKER_URL = 'https://1.mail-internetx.workers.dev/';
 
     // ==================== VARIABILE GLOBALE CHAT ====================
     let userData = null;
@@ -903,10 +912,12 @@
 
     // ==================== REQUESTS ====================
     async function makeRequest(params) {
-        const url = new URL(SCRIPT_URL);
-        Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
         try {
-            const response = await fetch(url.toString());
+            const response = await fetch(WORKER_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(params)
+            });
             const text = await response.text();
             try { return JSON.parse(text); } catch(e) { return { status: 'error', message: 'Răspuns invalid' }; }
         } catch (error) { throw error; }
@@ -1097,30 +1108,56 @@
         messagesArea.appendChild(loadingMsg);
         messagesArea.scrollTop = messagesArea.scrollHeight;
 
-        const formData = new FormData();
-        formData.append('action', 'uploadImage');
-        formData.append('image', file);
-        formData.append('nume', userData.nume);
-        formData.append('institutie', userData.institutie);
-        formData.append('ip', userIp);
         try {
+            // Pasul 1: Convertim imaginea în Base64 direct în browser
+            const base64Data = await new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = e => resolve(e.target.result); // "data:image/jpeg;base64,..."
+                reader.onerror = () => reject(new Error('Eroare citire fișier'));
+                reader.readAsDataURL(file);
+            });
+
+            // Verificare dimensiune (max 4MB după Base64)
+            if (base64Data.length > 5 * 1024 * 1024) {
+                throw new Error('Imaginea este prea mare. Maxim ~3MB per imagine.');
+            }
+
+            // Pasul 2: Trimitem JSON cu Base64 prin Worker (nu direct la GAS)
             const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 30000);
-            const response = await fetch(SCRIPT_URL, { method: 'POST', body: formData, signal: controller.signal });
+            const timeoutId = setTimeout(() => controller.abort(), 60000); // 60s pentru upload
+            const response = await fetch(WORKER_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    action: 'uploadImage',
+                    image: base64Data,
+                    nume: userData.nume,
+                    institutie: userData.institutie,
+                    ip: userIp
+                }),
+                signal: controller.signal
+            });
             clearTimeout(timeoutId);
+
             const result = await response.json();
             loadingMsg.remove();
             if (result.status === 'success' && result.data?.imageUrl) {
                 await sendMessage(`![Imagine](${result.data.imageUrl})`);
-            } else { throw new Error(result.message || 'Eroare la încărcare'); }
+            } else {
+                throw new Error(result.message || 'Eroare la încărcare imagine');
+            }
         } catch (error) {
             loadingMsg.remove();
             const errDiv = document.createElement('div');
             errDiv.className = 'error-message';
-            errDiv.textContent = error.name === 'AbortError' ? '❌ Timpul de încărcare a expirat.' : '❌ Imaginea nu s-a putut încărca.';
+            errDiv.textContent = error.name === 'AbortError'
+                ? '❌ Timeout — imaginea este prea mare sau conexiunea e lentă.'
+                : '❌ ' + (error.message || 'Imaginea nu s-a putut încărca.');
             document.querySelector('.input-area').prepend(errDiv);
-            setTimeout(() => errDiv.remove(), 3000);
-        } finally { cancelImageAttach(); }
+            setTimeout(() => errDiv.remove(), 5000);
+        } finally {
+            cancelImageAttach();
+        }
     }
 
     // ==================== KEYBOARD HANDLERS ====================
